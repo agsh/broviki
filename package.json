@@ -1,0 +1,28 @@
+{
+  "name": "Broviki",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agsh/broviki"
+  },
+  "license": "GPL-2.0",
+  "main": "app://host/src/app/index.html",
+  "version": "0.0.1",
+  "node-remote": "client.vpn.ht",
+  "window": {
+    "title": "Broviki",
+    "icon": "src/app/images/icon.png",
+    "toolbar": false,
+    "frame": false,
+    "min_width": 960,
+    "min_height": 520,
+    "resizable": true,
+    "show": false,
+    "position": "center"
+  },
+  "dependencies": {
+    "lodash": "*",
+    "onvif": "*"
+  },
+  "devDependencies": {
+  }
+}
