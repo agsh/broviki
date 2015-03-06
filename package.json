@@ -1,28 +1,33 @@
 {
   "name": "Broviki",
+  "author": "Andrew D.Laptev <a.d.laptev@gmail.com>",
+  "description": "ONVIF device manager written in javascript",
   "repository": {
     "type": "git",
     "url": "https://github.com/agsh/broviki"
   },
   "license": "GPL-2.0",
-  "main": "app://host/src/app/index.html",
+  "main": "app://host/index.html",
   "version": "0.0.1",
   "node-remote": "client.vpn.ht",
   "window": {
     "title": "Broviki",
     "icon": "src/app/images/icon.png",
-    "toolbar": false,
+    "toolbar": true,
     "frame": false,
     "min_width": 960,
     "min_height": 520,
     "resizable": true,
-    "show": false,
+    "show": true,
     "position": "center"
   },
   "dependencies": {
-    "lodash": "*",
-    "onvif": "*"
+    "font-awesome": "^4.3.0",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-less": "^3.0.1",
+    "lodash": "^3.3.1",
+    "onvif": "^0.2.4"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
