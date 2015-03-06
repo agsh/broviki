@@ -4,13 +4,15 @@
 
 var gulp = require('gulp')
 	, concat = require('gulp-concat')
+	, less = require('gulp-less')
 	;
 
 gulp.task('default', function() {
 	// place code for your default task here
 	gulp.src([
-		'*.less'
+		'styles/*.less'
 	])
-		.pipe(concat('lib.js'))
-		.pipe(gulp.dest('./dist'));
+		.pipe(concat('styles.css'))
+		.pipe(less())
+		.pipe(gulp.dest('styles'));
 });
