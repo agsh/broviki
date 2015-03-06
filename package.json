@@ -23,11 +23,13 @@
   },
   "dependencies": {
     "font-awesome": "^4.3.0",
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2",
-    "gulp-less": "^3.0.1",
     "lodash": "^3.3.1",
     "onvif": "^0.2.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-less": "^3.0.1",
+    "nw": "^0.12.0"
+  }
 }
