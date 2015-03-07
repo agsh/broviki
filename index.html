@@ -8,38 +8,52 @@
 </head>
 <body>
 <div class="tabs">
-	<ul class="tab-links">
-		<li class="active"><a href="#tab1"><i class="fa fa-home fa-2x"></i></a></li>
-		<li><a href="#tab2"><i class="fa fa-eye fa-2x"></i></a></li>
-		<li><a href="#tab3"><i class="fa fa-gear fa-2x"></i></a></li>
-		<li>
-			<a href="#tab4">
-				<span class="fa-stack">
-					<i class="fa fa-square fa-stack-2x"></i>
-					<i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-		</li>
-		<li><a href="#tab3"><i class="fa fa-github fa-2x"></i></a></li>
-	</ul>
+
+	<div class="header">
+		<ul class="tab-links">
+			<li data-tab="cams" class="active"><a><i class="fa fa-home fa-2x"></i></a></li>
+			<li data-tab="display"><a><i class="fa fa-eye fa-2x"></i></a></li>
+			<li data-tab="settings"><a><i class="fa fa-gear fa-2x"></i></a></li>
+			<li data-tab="console">
+				<a>
+					<span class="fa-stack">
+						<i class="fa fa-square fa-stack-2x"></i>
+						<i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>
+			</li>
+			<li data-tab="links"><a><i class="fa fa-github fa-2x"></i></a></li>
+		</ul>
+	</div>
 
 	<div class="tab-content">
-		<div id="tab1" class="tab active">
+		<div id="cams" class="tab active">
 			<p>Cams</p>
 		</div>
 
-		<div id="tab2" class="tab">
-			<p>Displays</p>
+		<div id="display" class="tab">
+			<p>Display</p>
 		</div>
 
-		<div id="tab3" class="tab">
+		<div id="settings" class="tab">
 			<p>Settings</p>
 		</div>
 
-		<div id="tab4" class="tab">
+		<div id="console" class="tab">
+			<p>Console</p>
+		</div>
+
+		<div id="links" class="tab">
 			<p>Other stuff</p>
 		</div>
 	</div>
+
+	<div class="tool-buttons">
+		<span class="close"><a><i class="fa fa-close"></i></a></span>
+	</div>
 </div>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="src/startup.js"></script>
+<script src="src/interface.js"></script>
 </body>
 </html>

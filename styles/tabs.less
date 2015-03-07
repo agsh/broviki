@@ -1,11 +1,19 @@
 @import "const";
 
+
+
 .tabs {
   width: 100%;
-  display: inline-block;
+
+  .header {
+    display: flex;
+    -webkit-app-region: drag;
+  }
 }
 
 .tab-links {
+  -webkit-app-region: no-drag;
+  display: inline-block;
   margin: 0;
   &:after {
     display: block;
@@ -18,7 +26,7 @@
     list-style: none;
   }
   a {
-    padding: 9px 15px;
+    padding: 0 4px;
     display: inline-block;
     border-radius: 5px 5px 0 0;
     background: @background;
@@ -34,7 +42,7 @@
 }
 
 li.active a, li.active a:hover {
-  background: #fff;
+  background: @foreground;
   color: #4c4c4c;
 }
 
@@ -42,7 +50,7 @@ li.active a, li.active a:hover {
   padding: 15px;
   border-radius: 3px;
   box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
-  background: #fff;
+  background: @foreground;
 }
 
 .tab {
