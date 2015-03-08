@@ -1,3 +1,7 @@
+const gui = require('nw.gui')
+	, win = gui.Window.get()
+	;
+
 /*
 var App = new Backbone.Marionette.Application();
 
@@ -18,11 +22,17 @@ App.db = Database;
 App.advsettings = AdvSettings;
 App.settings = Settings;*/
 
-const gui = require('nw.gui')
-	, win = gui.Window.get()
-	;
+var App = new Backbone.Marionette.Application();
 
-var App = {};
+_.extend(App, {
+	Controller: {},
+	View: {},
+	Model: {},
+	Page: {},
+	Scrapers: {},
+	Providers: {},
+	Localization: {}
+});
 
 App.close = function(callback) {
 	console.log('before');
