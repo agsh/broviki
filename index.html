@@ -7,53 +7,9 @@
 	<link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-<div class="tabs">
+<div class="window"></div>
 
-	<div class="header">
-		<ul class="tab-links">
-			<li data-tab="cams" class="active"><a><i class="fa fa-home fa-2x"></i></a></li>
-			<li data-tab="display"><a><i class="fa fa-eye fa-2x"></i></a></li>
-			<li data-tab="settings"><a><i class="fa fa-gear fa-2x"></i></a></li>
-			<li data-tab="console">
-				<a>
-					<span class="fa-stack">
-						<i class="fa fa-square fa-stack-2x"></i>
-						<i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-			</li>
-			<li data-tab="links"><a><i class="fa fa-github fa-2x"></i></a></li>
-		</ul>
-	</div>
-
-	<div class="tab-content">
-		<div id="cams" class="tab active">
-			<p>Cams</p>
-		</div>
-
-		<div id="display" class="tab">
-			<p>Display</p>
-		</div>
-
-		<div id="settings" class="tab">
-			<p>Settings</p>
-		</div>
-
-		<div id="console" class="tab">
-			<p onclick="">Console</p>
-
-		</div>
-
-		<div id="links" class="tab">
-			<p>Other stuff</p>
-		</div>
-	</div>
-
-	<div class="tool-buttons">
-		<span class="minimize"><a><i class="fa fa-compress"></i></a></span>
-		<span class="close"><a><i class="fa fa-close"></i></a></span>
-	</div>
-</div>
+<script src="templates/main.jade" type="text/jade" data-name="Main"></script>
 
 <script src="node_modules/lodash/index.js"></script>
 <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -63,6 +19,12 @@
 <script src="src/database.js"></script>
 <script src="src/app.js"></script>
 <script src="src/interface.js"></script>
+
+<script src="views/main.js"></script>
+
+<script>
+	App.startup();
+</script>
 
 </body>
 </html>
