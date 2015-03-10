@@ -1,0 +1,38 @@
+div.tabs
+   div.header
+      ul.tab-links
+         li.active(data-tab="cams")
+            a
+               i.fa.fa-home.fa-2x
+         li(data-tab="display")
+            a
+               i.fa.fa-eye.fa-2x
+         li(data-tab="settings")
+            a
+               i.fa.fa-gear.fa-2x
+         li(data-tab="console")
+            a
+               span.fa-stack
+                  i.fa.fa-square.fa-stack-2x
+                  i.fa.fa-terminal.fa-stack-1x.fa-inverse
+         li(data-tab="links")
+            a
+               i.fa.fa-github.fa-2x
+   div.tab-content
+      div#cams.tab.active
+         p Cams
+      div#display.tab
+         p Display
+      div#settings.tab
+         p Settings
+      div#console.tab
+         p Console
+      div#links.tab
+         p Other stuff
+   div.tool-buttons
+      span.minimize
+         a
+            i.fa.fa-compress
+      span.close
+         a
+            i.fa.fa-close
