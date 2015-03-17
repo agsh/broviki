@@ -23,11 +23,11 @@ app.use(session({
 }));
 
 app.use(function(req, res, next) {
-	if (!req.login) {
-		res.render('')
-	} else {
-		next();
-	}
+	console.log(req.login || 'empty');
+	next();
 });
+
+app.use(serveStatic(__dirname + '/client'));
+app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));
 
 app.listen(PORT);
