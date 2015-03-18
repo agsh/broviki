@@ -1,8 +1,3 @@
-const gui = require('nw.gui')
-	, jade = require('jade')
-	, win = gui.Window.get()
-	;
-
 /*
 var App = new Backbone.Marionette.Application();
 
@@ -65,7 +60,7 @@ App.startup = function() {
 };
 
 App.on('before:start', function() {
-	win.showDevTools();
+	/*win.showDevTools();
 	Database.getSetting('position').then(function(pos) {
 		if (pos) {
 			win.moveTo(pos.x, pos.y);
@@ -73,32 +68,27 @@ App.on('before:start', function() {
 	});
 
 	win.show();
-	win.focus();
+	win.focus();*/
 });
 
 App.on('start', function(options){
 	var mainWindow = new App.View.MainWindow();
+	/*
 	win.show();
-
 	try {
 		App.Window.show(mainWindow);
 	} catch (e) {
 		console.error('Couldn\'t start app: ', e, e.stack);
-	}
+	}*/
 });
 
 App.close = function(callback) {
-	console.log('before');
+	/*console.log('before');
 	console.log({x: win.x, y: win.y});
 	Database.setSetting('position', {x: win.x, y: win.y})
 		.then(function() {
 			process.exit();
 		}).catch(function(e) {
 			console.dir(e.stack);
-		});
-};
-
-
-App.minimize = function() {
-	win.minimize();
+		});*/
 };
