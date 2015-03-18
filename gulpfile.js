@@ -5,14 +5,57 @@
 var gulp = require('gulp')
 	, concat = require('gulp-concat')
 	, less = require('gulp-less')
+	, transform = require('vinyl-transform')
+	, browserify = require('browserify')
+	, sourcemaps = require('gulp-sourcemaps')
+	, uglify = require('gulp-uglify')
 	;
 
-gulp.task('default', function() {
+gulp.task('less to css', function() {
 	// place code for your default task here
 	gulp.src([
-		'styles/*.less'
+		'client/styles/*.less'
 	])
 		.pipe(concat('styles.css'))
 		.pipe(less())
-		.pipe(gulp.dest('styles'));
+		.pipe(gulp.dest('dist/styles'));
 });
+
+gulp.task('browserify js', function() {
+	var browserified = transform(function(filename) {
+		var b = browserify({entries: filename, debug: true});
+		return b.bundle();
+	});
+	gulp.src('client/js/*.js')
+		.pipe(browserified)
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(uglify())
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest('dist/js'))
+		;
+});
+
+gulp.task('browserify views', function() {
+	var browserified = transform(function(filename) {
+		var b = browserify({entries: filename, debug: true});
+		return b.bundle();
+	});
+	gulp.src('client/views/*.js')
+		.pipe(browserified)
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(uglify())
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest('dist/views'))
+		;
+});
+
+gulp.task('other', function() {
+	gulp.src(['client/index.html'])
+		.pipe(gulp.dest('dist'))
+		;
+	gulp.src('client/templates/*')
+		.pipe(gulp.dest('dist/templates'))
+		;
+});
+
+gulp.task('all', ['less to css', 'browserify js', 'browserify views', 'other']);
