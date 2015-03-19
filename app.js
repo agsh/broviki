@@ -8,6 +8,7 @@ const express = require('express')
 	, serveStatic = require('serve-static')
 	, session = require('express-session')
 	, NedbStore = require('connect-nedb-session')(session)
+	, db = require('./js/db')
 	;
 
 app.use(session({
@@ -22,11 +23,17 @@ app.use(session({
 	, store: new NedbStore({ filename: __dirname + '/db/sessions.db' })
 }));
 
-app.use(function(req, res, next) {
-	next();
-});
-
 app.use(serveStatic(__dirname + '/dist'));
 app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));
+
+app.use(function(req, res, next) {
+	if (!req.session.login) {
+		res.json({ error: 'Client has no valid login cookies.' });
+	} else {
+		next();
+	}
+});
+
+// require('./js/users')(app);
 
 app.listen(PORT);

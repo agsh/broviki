@@ -26,26 +26,13 @@ gulp.task('browserify js', function() {
 		var b = browserify({entries: filename, debug: true});
 		return b.bundle();
 	});
-	gulp.src('client/js/*.js')
+	gulp.src('client/js/app.js')
 		.pipe(browserified)
 		.pipe(sourcemaps.init({loadMaps: true}))
+		//.pipe(concat('bundled.js'))
 		.pipe(uglify())
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('dist/js'))
-		;
-});
-
-gulp.task('browserify views', function() {
-	var browserified = transform(function(filename) {
-		var b = browserify({entries: filename, debug: true});
-		return b.bundle();
-	});
-	gulp.src('client/views/*.js')
-		.pipe(browserified)
-		.pipe(sourcemaps.init({loadMaps: true}))
-		.pipe(uglify())
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('dist/views'))
 		;
 });
 
@@ -58,4 +45,4 @@ gulp.task('other', function() {
 		;
 });
 
-gulp.task('all', ['less to css', 'browserify js', 'browserify views', 'other']);
+gulp.task('all', ['less to css', 'browserify js', 'other']);

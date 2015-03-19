@@ -1,12 +1,18 @@
 const Datastore = require('nedb')
 	, path = require('path')
-	, dataPath = require('nw.gui').App.dataPath
+	, config = require('../config')
+	, bcrypt = require('bcrypt')
+	, dataPath = config.dataPath
 	, Q = require('q')
 	;
 
 var db = {
 	settings: new Datastore({
 		filename: path.join(dataPath, 'settings.db')
+		, autoload: true
+	})
+	, users: new Datastore({
+	    filename: path.join(dataPath, 'users.db')
 		, autoload: true
 	})
 };
@@ -18,6 +24,7 @@ function promisifyDatastore(datastore) {
 }
 
 promisifyDatastore(db.settings);
+promisifyDatastore(db.users);
 
 // This utilizes the exec function on nedb to turn function calls into promises
 var promisifyDb = function(obj) {
@@ -32,19 +39,19 @@ var promisifyDb = function(obj) {
 	});
 };
 
-var Database = {};
+var database = {};
 
-Database.getSetting= function(name) {
+database.getSetting = function(name) {
 	return promisifyDb(db.settings.findOne({
 		_id: name
 	}));
 };
 
-Database.getSettings = function() {
+database.getSettings = function() {
 	return promisifyDb(db.settings.find({}));
 };
 
-Database.setSetting= function(key, value) {
+database.setSetting= function(key, value) {
 	return db.settings.update({
 		_id: key
 	}, value, {
@@ -52,8 +59,8 @@ Database.setSetting= function(key, value) {
 	});
 };
 
-Database.writeSetting = function (data) {
-	return Database.getSetting({
+database.writeSetting = function (data) {
+	return database.getSetting({
 		key: data.key
 	})
 		.then(function (result) {
@@ -68,3 +75,32 @@ Database.writeSetting = function (data) {
 			}
 		});
 };
+
+database.users = {};
+
+database.users.getUser = function(login) {
+	return promisifyDb(db.settings.findOne({
+		login: login
+	}));
+};
+
+/**
+ * New user in DB
+ * @param {object} user
+ * @param {string} user.login
+ * @param {string} user.password
+ */
+database.users.signup = function(user) {
+	user.password = bcrypt.hashSync(req.body.password, 10);
+	db.users
+		.insert(user)
+		.then(function(res) {
+			req.session.login = user.login;
+			return {ok: true};
+		})
+		.catch(function() {
+			return {ok: false, error: 'Username has been taken.', field: 'username'};
+		});
+};
+
+module.exports = database;
