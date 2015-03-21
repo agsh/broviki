@@ -16,41 +16,22 @@ module.exports = function(app) {
 			res.json(err ? {ok: false, err: err.toString()} : { ok: true });
 		});
 	});
-
-// POST /api/auth/remove_account
-// @desc: deletes a user
 	app.post('/auth/remove', remove);
 };
 
-function auth(req, res) {
-	db.users.findOne({_id: req.signedCookies.user_id, authToken: req.signedCookies.auth_token}, function(err, user) {
-		if (user) {
-			res.json({ user: _.omit(user, ['password', 'auth_token']) });
-		} else {
-			res.json({ error: 'Client has no valid login cookies.'  });
+function login(req, res) {
+	if (!['login', 'password'].every(function(field){ return req.body[field];})) {
+		res.send({ok: false, error: 'empty fields'});
+	}
+	database.users.getUser(req.body.login).then(function(user) {
+		if (!user) {
+			return res.send({ok: false, error: 'User doesn\'t exists'});
 		}
-	});
-}
-
-function login(req, res){
-	db.get("SELECT * FROM users WHERE username = ?", [ req.body.username ], function(err, user){
-		if(user){
-
-			// Compare the POSTed password with the encrypted db password
-			if( bcrypt.compareSync( req.body.password, user.password)){
-				res.cookie('user_id', user.id, { signed: true, maxAge: config.cookieMaxAge });
-				res.cookie('auth_token', user.auth_token, { signed: true, maxAge: config.cookieMaxAge });
-
-				// Correct credentials, return the user object
-				res.json({ user: _.omit(user, ['password', 'auth_token']) });
-
-			} else {
-				// Username did not match password given
-				res.json({ error: "Invalid username or password."  });
-			}
+		if (bcrypt.compareSync(req.body.password, user.password)) {
+			req.session.login = req.body.login;
+			res.send({ok: true});
 		} else {
-			// Could not find the username
-			res.json({ error: "Username does not exist."  });
+			res.send({ok: false, error: 'Wrong password'});
 		}
 	});
 }
@@ -62,7 +43,7 @@ function signup(req, res) {
 		database.users.add({
 			login: req.body.login
 			, name: req.body.name
-			, password: req.body.password
+			, password: bcrypt.hashSync(req.body.password, 10)
 		}).then(function(r) {
 			res.send(r);
 		});
@@ -78,4 +59,3 @@ function remove(req, res) {
 			res.send({ok: false});
 		});
 }
-

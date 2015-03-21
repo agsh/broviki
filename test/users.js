@@ -27,14 +27,14 @@ describe('Users module', function() {
 		});
 	});
 	describe('New user creation', function() {
-		it('should not create a new user if fields is missing', function(done) {
+		it('should not create a new user if fields is missing', function (done) {
 			request.post(url + '/auth/signup', function (err, res, body) {
 				assert.ok(!err && res.statusCode === 200);
 				assert.equal(body.ok, false);
 				done();
 			});
 		});
-		it('should create a new user', function(done) {
+		it('should create a new user', function (done) {
 			request.post({
 				url: url + '/auth/signup'
 				, body: {
@@ -42,13 +42,13 @@ describe('Users module', function() {
 					, name: 'name'
 					, password: 'password'
 				}
-			}, function(err, res, body) {
+			}, function (err, res, body) {
 				assert.ok(!err && res.statusCode === 200);
 				assert.ok(body.ok);
 				done();
 			});
 		});
-		it('should create existing user', function(done) {
+		it('should create existing user', function (done) {
 			request.post({
 				url: url + '/auth/signup'
 				, body: {
@@ -56,12 +56,57 @@ describe('Users module', function() {
 					, name: 'name'
 					, password: 'password'
 				}
-			}, function(err, res, body) {
+			}, function (err, res, body) {
 				assert.ok(!err && res.statusCode === 200);
 				assert.ok(!body.ok);
 				done();
 			});
 		});
+	});
+
+	describe('Login', function() {
+		it('should fail with unexisting user', function(done) {
+			request.post({
+				url: url + '/auth/login'
+				, body: {
+					login: 'dumb'
+					, password: 'password'
+				}
+			}, function (err, res, body) {
+				assert.ok(!err && res.statusCode === 200);
+				assert.ok(!body.ok);
+				done();
+			});
+		});
+		it('should fail with wrong credentials', function(done) {
+			request.post({
+				url: url + '/auth/login'
+				, body: {
+					login: 'login'
+					, password: 'wrong password'
+				}
+			}, function (err, res, body) {
+				assert.ok(!err && res.statusCode === 200);
+				assert.ok(!body.ok);
+				done();
+			});
+		});
+		it('should login with proper credentials', function(done) {
+			request.post({
+				url: url + '/auth/login'
+				, body: {
+					login: 'login'
+					, password: 'password'
+				}
+			}, function (err, res, body) {
+				assert.ok(!err && res.statusCode === 200);
+				assert.ok(body.ok);
+				done();
+			});
+		});
+	});
+
+	describe('Remove user', function() {
 		it('should remove user from database', function(done) {
 			request.post({
 				url: url + '/auth/remove'

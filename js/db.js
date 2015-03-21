@@ -78,8 +78,12 @@ database.writeSetting = function (data) {
 
 database.users = {};
 
+database.users.getUsers = function() {
+	return promisifyDb(db.users.find({}));
+};
+
 database.users.getUser = function(login) {
-	return promisifyDb(db.settings.findOne({
+	return promisifyDb(db.users.findOne({
 		login: login
 	}));
 };
@@ -91,7 +95,6 @@ database.users.getUser = function(login) {
  * @param {string} user.password
  */
 database.users.add = function(user) {
-	user.password = bcrypt.hashSync(user.password, 10);
 	return db.users
 		.insert(user)
 		.then(function(res) {
