@@ -1,14 +1,16 @@
 /**
  * Created by Andrew D.Laptev<a.d.laptev@gmail.com> on 17.03.15.
  */
-const PORT = 6900;
-
-const express = require('express')
+const
+	config = require('./config')
+	, express = require('express')
+	, https = require('https')
 	, app = express()
 	, serveStatic = require('serve-static')
 	, session = require('express-session')
+	, path = require('path')
+	, fs = require('fs')
 	, NedbStore = require('connect-nedb-session')(session)
-	, db = require('./js/db')
 	;
 
 app.use(session({
@@ -26,6 +28,8 @@ app.use(session({
 app.use(serveStatic(__dirname + '/dist'));
 app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));
 
+require('./js/users')(app);
+
 app.use(function(req, res, next) {
 	if (!req.session.login) {
 		res.json({ error: 'Client has no valid login cookies.' });
@@ -34,6 +38,15 @@ app.use(function(req, res, next) {
 	}
 });
 
-// require('./js/users')(app);
+exports.start = function(callback) {
+	https.createServer({
+		key: fs.readFileSync('./tls/key.pem'),
+		cert: fs.readFileSync('./tls/cert.pem')
+	}, app).listen(config.port, callback);
+};
 
-app.listen(PORT);
+if (path.basename(process.argv[1]) === 'app.js') {
+	exports.start(function() {
+		console.log('started');
+	});
+}
