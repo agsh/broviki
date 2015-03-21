@@ -19,7 +19,7 @@ before(function(done) {
 describe('Users module', function() {
 	describe('Simple test', function() {
 		it('should return test response', function(done) {
-			request(url + '/auth/test', function (error, response, body) {
+			request(url + '/api/auth/test', function (error, response, body) {
 				assert.ok (!error && response.statusCode === 200);
 				assert.equal(body, 'test');
 				done();
@@ -28,7 +28,7 @@ describe('Users module', function() {
 	});
 	describe('New user creation', function() {
 		it('should not create a new user if fields is missing', function (done) {
-			request.post(url + '/auth/signup', function (err, res, body) {
+			request.post(url + '/api/auth/signup', function (err, res, body) {
 				assert.ok(!err && res.statusCode === 200);
 				assert.equal(body.ok, false);
 				done();
@@ -36,7 +36,7 @@ describe('Users module', function() {
 		});
 		it('should create a new user', function (done) {
 			request.post({
-				url: url + '/auth/signup'
+				url: url + '/api/auth/signup'
 				, body: {
 					login: 'login'
 					, name: 'name'
@@ -50,7 +50,7 @@ describe('Users module', function() {
 		});
 		it('should create existing user', function (done) {
 			request.post({
-				url: url + '/auth/signup'
+				url: url + '/api/auth/signup'
 				, body: {
 					login: 'login'
 					, name: 'name'
@@ -67,7 +67,7 @@ describe('Users module', function() {
 	describe('Login', function() {
 		it('should fail with unexisting user', function(done) {
 			request.post({
-				url: url + '/auth/login'
+				url: url + '/api/auth/login'
 				, body: {
 					login: 'dumb'
 					, password: 'password'
@@ -80,7 +80,7 @@ describe('Users module', function() {
 		});
 		it('should fail with wrong credentials', function(done) {
 			request.post({
-				url: url + '/auth/login'
+				url: url + '/api/auth/login'
 				, body: {
 					login: 'login'
 					, password: 'wrong password'
@@ -93,7 +93,7 @@ describe('Users module', function() {
 		});
 		it('should login with proper credentials', function(done) {
 			request.post({
-				url: url + '/auth/login'
+				url: url + '/api/auth/login'
 				, body: {
 					login: 'login'
 					, password: 'password'
@@ -109,7 +109,7 @@ describe('Users module', function() {
 	describe('Remove user', function() {
 		it('should remove user from database', function(done) {
 			request.post({
-				url: url + '/auth/remove'
+				url: url + '/api/auth/remove'
 				, body: { // TODO remove login
 					login: 'login'
 				}

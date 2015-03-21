@@ -26,7 +26,7 @@ gulp.task('browserify js', function() {
 		var b = browserify({entries: filename, debug: true});
 		return b.bundle();
 	});
-	gulp.src('client/js/app.js')
+	gulp.src('client/js/start.js')
 		.pipe(browserified)
 		.pipe(sourcemaps.init({loadMaps: true}))
 		//.pipe(concat('bundled.js'))

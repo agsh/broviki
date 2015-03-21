@@ -2,8 +2,6 @@
  * Created by Andrew D.Laptev<a.d.laptev@gmail.com> on 18.03.15.
  */
 
-var App = require('./app');
-
 var MainWindow = Backbone.Marionette.LayoutView.extend({
 	id: 'main',
 
@@ -26,7 +24,5 @@ var MainWindow = Backbone.Marionette.LayoutView.extend({
 		this.$el.html(this.template({}));
 	}
 });
-
-
 
 module.exports = MainWindow;

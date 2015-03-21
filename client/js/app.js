@@ -22,9 +22,9 @@ var Q = require('q')
 	, jade = require('jade')
 	;
 
-var App = new Backbone.Marionette.Application();
+var app = new Backbone.Marionette.Application();
 
-_.extend(App, {
+_.extend(app, {
 	templates: {},
 	Controller: {},
 	View: {},
@@ -35,7 +35,7 @@ _.extend(App, {
 	Localization: {}
 });
 
-App.addRegions({
+app.addRegions({
 	Window: '.window'
 });
 
@@ -47,7 +47,7 @@ var initTemplates = function () {
 		var d = Q.defer();
 		console.log(el.src);
 		$.get(el.src, function (res) {
-			App.templates[el.getAttribute('data-name')] = jade.compile(res);
+			app.templates[el.getAttribute('data-name')] = jade.compile(res);
 			d.resolve(true);
 		});
 		ts.push(d.promise);
@@ -56,13 +56,13 @@ var initTemplates = function () {
 	return Q.all(ts);
 };
 
-App.startup = function() {
+app.startup = function() {
 	initTemplates().then(function() {
-		App.start();
+		app.start();
 	});
 };
 
-App.on('before:start', function() {
+app.on('before:start', function() {
 	/*win.showDevTools();
 	database.getSetting('position').then(function(pos) {
 		if (pos) {
@@ -74,8 +74,8 @@ App.on('before:start', function() {
 	win.focus();*/
 });
 
-App.on('start', function(options){
-	var mainWindow = new App.View.MainWindow();
+app.on('start', function(options){
+	var mainWindow = new app.View.MainWindow();
 	/*
 	win.show();
 	try {
@@ -85,7 +85,7 @@ App.on('start', function(options){
 	}*/
 });
 
-App.close = function(callback) {
+app.close = function(callback) {
 	/*console.log('before');
 	console.log({x: win.x, y: win.y});
 	database.setSetting('position', {x: win.x, y: win.y})
@@ -96,6 +96,6 @@ App.close = function(callback) {
 		});*/
 };
 
-App.MainWindow = require('./main');
+app.MainWindow = require('./main');
 
-module.exports = App;
+module.exports = app;

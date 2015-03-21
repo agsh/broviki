@@ -8,15 +8,15 @@ const database = require('./db')
 	;
 
 module.exports = function(app) {
-	app.get('/auth/test', function(req, res) {res.send('test');});
-	app.post('/auth/login', login);
-	app.post('/auth/signup', signup);
-	app.post('/auth/logout', function(req, res){
+	app.get('/api/auth/test', function(req, res) {res.send('test');});
+	app.post('/api/auth/login', login);
+	app.post('/api/auth/signup', signup);
+	app.post('/api/auth/logout', function(req, res){
 		req.session.destroy(function(err) {
 			res.json(err ? {ok: false, err: err.toString()} : { ok: true });
 		});
 	});
-	app.post('/auth/remove', remove);
+	app.post('/api/auth/remove', remove);
 };
 
 function login(req, res) {
