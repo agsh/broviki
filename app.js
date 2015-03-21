@@ -6,6 +6,7 @@ const
 	, express = require('express')
 	, https = require('https')
 	, app = express()
+	, bodyParser = require('body-parser')
 	, serveStatic = require('serve-static')
 	, session = require('express-session')
 	, path = require('path')
@@ -24,6 +25,8 @@ app.use(session({
 	}
 	, store: new NedbStore({ filename: __dirname + '/db/sessions.db' })
 }));
+
+app.use(bodyParser.json());
 
 app.use(serveStatic(__dirname + '/dist'));
 app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));

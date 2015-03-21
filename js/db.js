@@ -90,17 +90,30 @@ database.users.getUser = function(login) {
  * @param {string} user.login
  * @param {string} user.password
  */
-database.users.signup = function(user) {
-	user.password = bcrypt.hashSync(req.body.password, 10);
-	db.users
+database.users.add = function(user) {
+	user.password = bcrypt.hashSync(user.password, 10);
+	return db.users
 		.insert(user)
 		.then(function(res) {
-			req.session.login = user.login;
 			return {ok: true};
 		})
 		.catch(function() {
 			return {ok: false, error: 'Username has been taken.', field: 'username'};
 		});
 };
+
+/**
+ * Remove user from database
+ * @param {string} login
+ */
+database.users.remove = function(login) {
+	return db.users.remove({login: login});
+};
+
+db.users.ensureIndex({ fieldName: 'userName', unique: true }, function (err) {
+	if (err) {
+		console.error(err);
+	}
+});
 
 module.exports = database;

@@ -7,13 +7,8 @@ const database = require('./db')
 	, config = require('./../config')
 	;
 
-db.users.ensureIndex({ fieldName: 'userName', unique: true }, function (err) {
-	if (err) {
-		console.error(err);
-	}
-});
-
 module.exports = function(app) {
+	app.get('/auth/test', function(req, res) {res.send('test');});
 	app.post('/auth/login', login);
 	app.post('/auth/signup', signup);
 	app.post('/auth/logout', function(req, res){
@@ -24,17 +19,7 @@ module.exports = function(app) {
 
 // POST /api/auth/remove_account
 // @desc: deletes a user
-	app.post("/api/auth/remove_account", function(req, res){
-		db.run("DELETE FROM users WHERE id = ? AND auth_token = ?", [ req.signedCookies.user_id, req.signedCookies.auth_token ], function(err, rows){
-			if(err){
-				res.json({ error: "Error while trying to delete user." });
-			} else {
-				res.clearCookie('user_id');
-				res.clearCookie('auth_token');
-				res.json({ success: "User successfully deleted." });
-			}
-		});
-	});
+	app.post('/auth/remove', remove);
 };
 
 function auth(req, res) {
@@ -71,10 +56,26 @@ function login(req, res){
 }
 
 function signup(req, res) {
-	database.users.signup({
-		login: req.body.login
-		, name: req.body.name
-		, password: req.body.password
-	}.then(res.send));
+	if (!['login', 'name', 'password'].every(function(field){ return req.body[field];})) {
+		res.send({ok: false, error: 'empty fields'});
+	} else {
+		database.users.add({
+			login: req.body.login
+			, name: req.body.name
+			, password: req.body.password
+		}).then(function(r) {
+			res.send(r);
+		});
+	}
+}
+
+function remove(req, res) {
+	// TODO get login from session
+	database.users.remove(req.body.login)
+		.then(function() {
+			res.send({ok: true});
+		}).catch(function() {
+			res.send({ok: false});
+		});
 }
 

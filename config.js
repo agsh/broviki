@@ -4,4 +4,5 @@
 module.exports = {
 	cookieMaxAge: 1000 * 60 * 60 * 24 * 365
 	, dataPath: '/tmp/'
+	, port: 6900
 };
