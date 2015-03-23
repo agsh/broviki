@@ -32,13 +32,13 @@ app.use(bodyParser.json());
 
 require('./js/users')(app); // users api
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
 	if (!req.session.login) {
 		res.render('login');
 	} else {
 		next();
 	}
-});
+});*/
 
 app.use(serveStatic(__dirname + '/dist'));
 app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));

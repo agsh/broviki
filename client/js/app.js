@@ -20,9 +20,15 @@ App.settings = Settings;*/
 
 var Q = require('q')
 	, jade = require('jade')
+	, $ = require('jquery')
+	, Backbone = require('backbone')
+	;
+Backbone.$ = $;
+var Marionette = require('backbone.marionette')
+	, Router = require('./router').Router
 	;
 
-var app = new Backbone.Marionette.Application();
+var app = new Marionette.Application();
 
 _.extend(app, {
 	templates: {},
@@ -35,18 +41,20 @@ _.extend(app, {
 	Localization: {}
 });
 
+app.router = new Router();
+//app.session = new SessionModel({});
+
+
 app.addRegions({
 	Window: '.window'
 });
 
 var initTemplates = function () {
-	// Load in external templates
 	var ts = [];
 
 	_.each(document.querySelectorAll('[type="text/jade"]'), function (el) {
 		var d = Q.defer();
-		console.log(el.src);
-		$.get(el.src, function (res) {
+		$.get(el.src, function(res) {
 			app.templates[el.getAttribute('data-name')] = jade.compile(res);
 			d.resolve(true);
 		});
