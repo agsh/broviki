@@ -14,6 +14,8 @@ const
 	, NedbStore = require('connect-nedb-session')(session)
 	;
 
+app.set('view engine', 'jade');
+
 app.use(session({
 	secret: 'broviki'
 	, resave: false
@@ -28,18 +30,18 @@ app.use(session({
 
 app.use(bodyParser.json());
 
-app.use(serveStatic(__dirname + '/dist'));
-app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));
-
-require('./js/users')(app);
+require('./js/users')(app); // users api
 
 app.use(function(req, res, next) {
 	if (!req.session.login) {
-		res.json({ error: 'Client has no valid login cookies.' });
+		res.render('login');
 	} else {
 		next();
 	}
 });
+
+app.use(serveStatic(__dirname + '/dist'));
+app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));
 
 exports.start = function(callback) {
 	https.createServer({
