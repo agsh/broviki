@@ -36,6 +36,10 @@ gulp.task('browserify js', function() {
 		;
 });
 
+gulp.task('watch js', function() {
+	gulp.watch('client/js/*.js', ['browserify js']);
+});
+
 gulp.task('other', function() {
 	gulp.src(['client/index.html'])
 		.pipe(gulp.dest('dist'))
