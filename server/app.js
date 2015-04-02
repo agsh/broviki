@@ -40,8 +40,10 @@ require('./js/users')(app); // users api
 	}
 });*/
 
-app.use(serveStatic(__dirname + '/dist'));
-app.use('/node_modules/', serveStatic(__dirname + '/node_modules/'));
+console.log(__dirname + '/../dist');
+
+app.use(serveStatic(__dirname + '/../dist'));
+app.use('/node_modules/', serveStatic(__dirname + '/../node_modules/'));
 
 exports.start = function(callback) {
 	https.createServer({
