@@ -20,33 +20,27 @@ App.settings = Settings;*/
 
 var Q = require('q')
 	, jade = require('jade')
+	, _ = require('lodash')
 	, $ = require('jquery')
 	, Backbone = require('backbone')
 	;
 Backbone.$ = $;
 var Marionette = require('backbone.marionette')
-	, Router = require('./router').Router
 	;
 
-var app = new Marionette.Application();
+// Chrome dev-plugins support
+if (window.__agent) {
+	window.__agent.start(Backbone, Marionette);
+}
 
-_.extend(app, {
-	templates: {},
-	Controller: {},
-	View: {},
-	Model: {},
-	Page: {},
-	Scrapers: {},
-	Providers: {},
-	Localization: {}
-});
+var App = new Marionette.Application();
+module.exports.App = App;
 
-app.router = new Router();
-//app.session = new SessionModel({});
+var MainWindow = require('./main').MainWindow;
+var Test = require('./apps/test/app');
 
-
-app.addRegions({
-	Window: '.window'
+App.addRegions({
+	window: '.window'
 });
 
 var initTemplates = function () {
@@ -55,55 +49,36 @@ var initTemplates = function () {
 	_.each(document.querySelectorAll('[type="text/jade"]'), function (el) {
 		var d = Q.defer();
 		$.get(el.src, function(res) {
-			app.templates[el.getAttribute('data-name')] = jade.compile(res);
+			App.templates[el.getAttribute('data-name')] = jade.compile(res);
 			d.resolve(true);
 		});
 		ts.push(d.promise);
 	});
-
 	return Q.all(ts);
 };
 
-app.startup = function() {
+App.startup = function() {
 	initTemplates().then(function() {
-		app.start();
+		App.start();
 	});
 };
 
-app.on('before:start', function() {
-	/*win.showDevTools();
-	database.getSetting('position').then(function(pos) {
-		if (pos) {
-			win.moveTo(pos.x, pos.y);
+App.navigate = function(route, options){
+	options || (options = {});
+	Backbone.history.navigate(route, options);
+};
+
+App.getCurrentRoute = function(){
+	return Backbone.history.fragment
+};
+
+App.on('start', function(options){
+	if (Backbone.history){
+		Backbone.history.start();
+		if (this.getCurrentRoute() === ''){
+			App.trigger('test:test');
 		}
-	});
-
-	win.show();
-	win.focus();*/
+	}
 });
 
-app.on('start', function(options){
-	var mainWindow = new app.View.MainWindow();
-	/*
-	win.show();
-	try {
-		App.Window.show(mainWindow);
-	} catch (e) {
-		console.error('Couldn\'t start app: ', e, e.stack);
-	}*/
-});
-
-app.close = function(callback) {
-	/*console.log('before');
-	console.log({x: win.x, y: win.y});
-	database.setSetting('position', {x: win.x, y: win.y})
-		.then(function() {
-			process.exit();
-		}).catch(function(e) {
-			console.dir(e.stack);
-		});*/
-};
-
-app.MainWindow = require('./main');
-
-module.exports = app;
+window.App = App;

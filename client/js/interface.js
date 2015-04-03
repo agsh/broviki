@@ -19,9 +19,9 @@ $(function() {
 });
 
 $('.close').click(function() {
-	app.close();
+	App.close();
 });
 
 $('.minimize').click(function() {
-	app.minimize();
+	App.minimize();
 });

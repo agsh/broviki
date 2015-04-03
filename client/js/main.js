@@ -2,7 +2,9 @@
  * Created by Andrew D.Laptev<a.d.laptev@gmail.com> on 18.03.15.
  */
 
-var MainWindow = Backbone.Marionette.LayoutView.extend({
+var Marionette = require('backbone.marionette');
+
+var MainWindow = Marionette.LayoutView.extend({
 	id: 'main',
 
 	regions: {
@@ -25,4 +27,4 @@ var MainWindow = Backbone.Marionette.LayoutView.extend({
 	}
 });
 
-module.exports = MainWindow;
+module.exports.MainWindow = MainWindow;
