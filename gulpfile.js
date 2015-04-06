@@ -9,7 +9,16 @@ var gulp = require('gulp')
 	, browserify = require('browserify')
 	, sourcemaps = require('gulp-sourcemaps')
 	, uglify = require('gulp-uglify')
+	, jade = require('gulp-jade')
 	;
+
+gulp.task('jade', function() {
+	gulp.src('client/templates/*.jade')
+		.pipe(jade({
+			client: true
+		}))
+		.pipe(gulp.dest('dist/templates'))
+});
 
 gulp.task('less to css', function() {
 	// all less styles

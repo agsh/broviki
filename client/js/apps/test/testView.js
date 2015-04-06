@@ -5,9 +5,7 @@
 var Marionette = require('backbone.marionette');
 
 var Test = Marionette.ItemView.extend({
-	template: function() {
-		return '<h1>test-templ</h1>';
-	}
+	template: '#test'
 });
 
 module.exports.Test = Test;

@@ -1,25 +1,4 @@
-/*
-var App = new Backbone.Marionette.Application();
-
-_.extend(App, {
-	Controller: {},
-	View: {},
-	Model: {},
-	Page: {},
-	Scrapers: {},
-	Providers: {},
-	Localization: {}
-});
-
-// set database
-App.db = Database;
-
-// Set settings
-App.advsettings = AdvSettings;
-App.settings = Settings;*/
-
-var Q = require('q')
-	, jade = require('jade')
+var jade = require('jade')
 	, _ = require('lodash')
 	, $ = require('jquery')
 	, Backbone = require('backbone')
@@ -27,7 +6,7 @@ var Q = require('q')
 Backbone.$ = $;
 var Marionette = require('backbone.marionette')
 	;
-
+var templates = require('./templates')
 // Chrome dev-plugins support
 if (window.__agent) {
 	window.__agent.start(Backbone, Marionette);
@@ -43,23 +22,11 @@ App.addRegions({
 	window: '.window'
 });
 
-var initTemplates = function () {
-	var ts = [];
-	_.each(document.querySelectorAll('[type="text/jade"]'), function (el) {
-		var d = Q.defer();
-		$.get(el.src, function(res) {
-			App.templates[el.getAttribute('data-name')] = jade.compile(res);
-			d.resolve(true);
-		});
-		ts.push(d.promise);
-	});
-	return Q.all(ts);
-};
 
 App.startup = function() {
-	initTemplates().then(function() {
+	//initTemplates().then(function() {
 		App.start();
-	});
+	//});
 };
 
 App.navigate = function(route, options){
