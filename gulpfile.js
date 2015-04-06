@@ -12,13 +12,17 @@ var gulp = require('gulp')
 	;
 
 gulp.task('less to css', function() {
-	// place code for your default task here
+	// all less styles
 	gulp.src([
 		'client/styles/*.less'
 	])
 		.pipe(concat('styles.css'))
 		.pipe(less())
 		.pipe(gulp.dest('dist/styles'));
+	// font-icons
+	gulp
+		.src('/node_modules/font-awesome/css/font-awesome.min.css')
+		.pipe(gulp.dest('dist/styles'))
 });
 
 gulp.task('browserify js', function() {

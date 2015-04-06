@@ -6,7 +6,7 @@ const assert = require('assert')
 	, users = require('../js/users')
 	, request = require('request').defaults({'json': true})
 	, config = require('../config')
-	, app = require('../app')
+	, app = require('../App')
 	, url = 'https://localhost:' + config.port
 	;
 

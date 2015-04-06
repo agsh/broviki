@@ -45,7 +45,6 @@ App.addRegions({
 
 var initTemplates = function () {
 	var ts = [];
-
 	_.each(document.querySelectorAll('[type="text/jade"]'), function (el) {
 		var d = Q.defer();
 		$.get(el.src, function(res) {

@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 require('./js/users')(app); // users api
 
 /*
-app.use(function(req, res, next) {
+App.use(function(req, res, next) {
 	/!*if (!req.session.login) {
 		res.render('login');
 	} else {
