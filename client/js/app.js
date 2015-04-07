@@ -15,8 +15,8 @@ if (window.__agent) {
 var App = new Marionette.Application();
 module.exports.App = App;
 
-var MainWindow = require('./main').MainWindow;
 var Test = require('./apps/test/app');
+var Login = require('./apps/login/app');
 
 var RootView = Marionette.LayoutView.extend({
 	template: templates.main
