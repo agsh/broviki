@@ -1,35 +1,15 @@
-/**
- * Created by Andrew D.Laptev<a.d.laptev@gmail.com> on 19.03.15.
- */
+var jade = require('jade/runtime'); module.exports = {
+"main": function(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
 
-var Marionette = require('backbone.marionette')
-	, jade = require('jade')
-	, _ = require('lodash')
-	, $ = require('jquery')
-	;
-
-/*Marionette.TemplateCache.prototype.loadTemplate = function(templateId, options){
-	// load your template here, returning the data needed for the compileTemplate
-	// function. For example, you have a function that creates templates based on the
-	// value of templateId
-	console.log(templateId);
-	//$.get('templates/test.jade', function(d) {console.log(d);});
-	// send the template back
-	return '<h1>templ</h1>';
-};*/
-
-var initTemplates = function () {
-	/*var ts = [];
-	_.each(document.querySelectorAll('[type="text/jade"]'), function (el) {
-		var defer = $.Deferred();
-		$.get(el.src, function(res) {
-	 App.templates[el.getAttribute('data-name')] = jade.compile(res);
-	 d.resolve(true);
-	 });
-	 ts.push(d.promise);
-	 });
-	 return Q.all([]);
-*/
-};
-
-module.exports.initTemplates = initTemplates;
+buf.push("<div class=\"tabs\"><div class=\"header\"><ul class=\"tab-links\"><li data-tab=\"cams\" class=\"active\"><a><i class=\"fa fa-home fa-2x\"></i></a></li><li data-tab=\"display\"><a><i class=\"fa fa-eye fa-2x\"></i></a></li><li data-tab=\"settings\"><a><i class=\"fa fa-gear fa-2x\"></i></a></li><li data-tab=\"console\"><a><span class=\"fa-stack\"><i class=\"fa fa-square fa-stack-2x\"></i><i class=\"fa fa-terminal fa-stack-1x fa-inverse\"></i></span></a></li><li data-tab=\"links\"><a><i class=\"fa fa-github fa-2x\"></i></a></li></ul></div><div class=\"tab-content\"><div id=\"cams\" class=\"tab active\"><p>Cams</p></div><div id=\"display\" class=\"tab\"><p>Display</p></div><div id=\"settings\" class=\"tab\"><p>Settings</p></div><div id=\"console\" class=\"tab\"><p>Console</p></div><div id=\"links\" class=\"tab\"><p>Other stuff</p></div></div><div class=\"tool-buttons\"><span class=\"minimize\"><a><i class=\"fa fa-compress\"></i></a></span><span class=\"close\"><a><i class=\"fa fa-close\"></i></a></span></div></div>");;return buf.join("");
+},
+"test": function(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (test) {
+buf.push("<div>test template " + (jade.escape((jade_interp = test) == null ? '' : jade_interp)) + "</div>");}.call(this,"test" in locals_for_with?locals_for_with.test:typeof test!=="undefined"?test:undefined));;return buf.join("");
+}};

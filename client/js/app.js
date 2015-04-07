@@ -22,7 +22,6 @@ App.addRegions({
 	window: '.window'
 });
 
-
 App.startup = function() {
 	//initTemplates().then(function() {
 		App.start();

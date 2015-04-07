@@ -10,6 +10,7 @@ var gulp = require('gulp')
 	, sourcemaps = require('gulp-sourcemaps')
 	, uglify = require('gulp-uglify')
 	, jade = require('gulp-jade')
+	, concatJST = require('../gulp-jade-jst-concat')
 	;
 
 gulp.task('jade', function() {
@@ -17,7 +18,8 @@ gulp.task('jade', function() {
 		.pipe(jade({
 			client: true
 		}))
-		.pipe(gulp.dest('dist/templates'))
+		.pipe(concatJST('templates.js', {basepath: 'client/templates'}))
+		.pipe(gulp.dest('client/js'))
 });
 
 gulp.task('less to css', function() {
@@ -62,4 +64,4 @@ gulp.task('other', function() {
 		;
 });
 
-gulp.task('all', ['less to css', 'browserify js', 'other']);
+gulp.task('all', ['jade', 'less to css', 'browserify js', 'other']);
