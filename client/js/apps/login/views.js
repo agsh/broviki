@@ -6,8 +6,10 @@ var Marionette = require('backbone.marionette')
 	, templates = require('')
 	;
 
-var Message = Marionette.ItemView.extend({
+var Login = Marionette.ItemView.extend({
 	template: login
 });
 
-module.exports.Message = Message;
+module.exports = {
+	Login: Login
+};

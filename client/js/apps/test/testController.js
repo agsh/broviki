@@ -9,7 +9,7 @@ var TestView = require('./testView').Test
 var Controller = {
 	showTest: function() {
 		var view = new TestView();
-		App.window.show(view);
+		App.rootView.window.show(view);
 	}
 };
 

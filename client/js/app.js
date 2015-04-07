@@ -6,7 +6,7 @@ var jade = require('jade')
 Backbone.$ = $;
 var Marionette = require('backbone.marionette')
 	;
-var templates = require('./templates')
+var templates = require('./templates');
 // Chrome dev-plugins support
 if (window.__agent) {
 	window.__agent.start(Backbone, Marionette);
@@ -18,9 +18,16 @@ module.exports.App = App;
 var MainWindow = require('./main').MainWindow;
 var Test = require('./apps/test/app');
 
-App.addRegions({
-	window: '.window'
+var RootView = Marionette.LayoutView.extend({
+	template: templates.main
+	, el: 'body'
+	, regions: {
+		window: '#window'
+	}
 });
+
+var rootView = App.rootView = new RootView();
+rootView.render();
 
 App.startup = function() {
 	//initTemplates().then(function() {
