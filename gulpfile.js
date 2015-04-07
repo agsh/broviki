@@ -10,7 +10,7 @@ var gulp = require('gulp')
 	, sourcemaps = require('gulp-sourcemaps')
 	, uglify = require('gulp-uglify')
 	, jade = require('gulp-jade')
-	, concatJST = require('../gulp-jade-jst-concat')
+	, concatJST = require('gulp-jade-jst-concat')
 	;
 
 gulp.task('jade', function() {
