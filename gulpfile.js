@@ -11,6 +11,7 @@ var gulp = require('gulp')
 	, uglify = require('gulp-uglify')
 	, jade = require('gulp-jade')
 	, concatJST = require('gulp-jade-jst-concat')
+	, addsrc = require('gulp-add-src')
 	;
 
 gulp.task('jade', function() {
@@ -27,8 +28,9 @@ gulp.task('less to css', function() {
 	gulp.src([
 		'client/styles/*.less'
 	])
-		.pipe(concat('styles.css'))
 		.pipe(less())
+		.pipe(addsrc('node_modules/bootstrap/dist/css/bootstrap.css'))
+		.pipe(concat('styles.css'))
 		.pipe(gulp.dest('dist/styles'));
 	// font-icons
 	gulp
