@@ -10,6 +10,11 @@ var Controller = {
 	showTest: function() {
 		var view = new TestView();
 		App.rootView.window.show(view);
+
+		view.on('login:show', function() {
+			alert('controller show');
+			App.trigger('login:login');
+		});
 	}
 };
 

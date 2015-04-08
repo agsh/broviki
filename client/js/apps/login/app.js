@@ -4,28 +4,22 @@
 
 var Marionette = require('backbone.marionette')
 	, App = require('../../app').App
+	, Controller = require('./controller').Controller
 	;
-
-var Login = {
-	showLogin: function() {}
-	, showSignup: function() {}
-};
-
-console.log(App);
 
 App.on('login:login', function() {
 	App.navigate('login');
-	Login.showLogin();
+	Controller.showLogin();
 });
 
 App.on('login:signup', function() {
 	App.navigate('signup');
-	Login.showSignup();
+	Controller.showSignup();
 });
 
 App.on('before:start', function(){
 	new Marionette.AppRouter({
-		controller: Login
+		controller: Controller
 		, appRoutes: {
 			login: 'showLogin'
 			, signup: 'showSignup'

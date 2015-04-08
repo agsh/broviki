@@ -3,11 +3,13 @@
  */
 
 var Marionette = require('backbone.marionette')
-	, templates = require('')
+	, Backbone = require('backbone')
+	, templates = require('../../templates')
 	;
 
 var Login = Marionette.ItemView.extend({
-	template: login
+	template: templates.login
+	, model: new Backbone.Model({login: 'login', password: 'password'})
 });
 
 module.exports = {

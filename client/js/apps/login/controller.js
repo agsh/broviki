@@ -9,6 +9,9 @@ var Controller = {
 		var view = new views.Login;
 		App.rootView.window.show(view);
 	}
+	, showSignup: function() {}
 };
 
-module.exports.Controller = Controller;
+module.exports = {
+	Controller: Controller
+};

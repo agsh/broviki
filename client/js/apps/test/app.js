@@ -20,8 +20,6 @@ var Test = {
 	}
 };
 
-console.log(App);
-
 App.on('test:test', function() {
 	App.navigate('test');
 	Test.showTest();
