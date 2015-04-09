@@ -10,6 +10,16 @@ var Marionette = require('backbone.marionette')
 var Login = Marionette.ItemView.extend({
 	template: templates.login
 	, model: new Backbone.Model({login: 'login', password: 'password'})
+	, events: {
+		'click #login-btn': login
+		, 'click signup-btn': signup
+	}
+	, login: function() {
+		console.log('login');
+	}
+	, signup: function() {
+		console.log('signup');
+	}
 });
 
 module.exports = {
