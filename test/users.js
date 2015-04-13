@@ -3,10 +3,10 @@
  */
 
 const assert = require('assert')
-	, users = require('../js/users')
+	, users = require('../server/js/users')
 	, request = require('request').defaults({'json': true})
-	, config = require('../config')
-	, app = require('../App')
+	, config = require('../server/config')
+	, app = require('../server/app')
 	, url = 'https://localhost:' + config.port
 	;
 

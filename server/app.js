@@ -48,8 +48,8 @@ app.use('/node_modules/', serveStatic(__dirname + '/../node_modules/'));
 
 exports.start = function(callback) {
 	https.createServer({
-		key: fs.readFileSync('./tls/key.pem'),
-		cert: fs.readFileSync('./tls/cert.pem')
+		key: fs.readFileSync(__dirname + '/tls/key.pem'),
+		cert: fs.readFileSync(__dirname + '/tls/cert.pem')
 	}, app).listen(config.port, callback);
 };
 
