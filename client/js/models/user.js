@@ -2,6 +2,8 @@
  * Created by Andrew D.Laptev<a.d.laptev@gmail.com> on 07.04.15.
  */
 
+var Backbone = require('backbone');
+
 var User = Backbone.Model.extend({
 	initialize: function(){
 		_.bindAll(this);
@@ -13,3 +15,5 @@ var User = Backbone.Model.extend({
 	}
 	, url: '/api/auth/user'
 });
+
+module.exports = User;
