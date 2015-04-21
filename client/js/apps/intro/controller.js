@@ -7,17 +7,20 @@ var views = require('./views')
     ;
 
 var Controller = {
-    intro: new views.Intro()
-    , showIntro: function() {
-        App.rootView.window.show(this.intro);
+    showIntro: function() {
+	    var intro = new views.Intro();
+	    intro.on('navigate', function(where) {
+		    this[where](intro.getRegion('content'));
+	    }.bind(this));
+        App.rootView.window.show(intro);
     }
-    , showLogin: function() {
+    , login: function(region) {
         var login = new views.Login();
-        App.rootView.window.show(login);
+        region.show(login);
     }
-    , showSignup: function() {
+    , signup: function(region) {
         var signup = new views.Signup();
-        App.rootView.window.show(signup);
+		region.show(login);
     }
 };
 

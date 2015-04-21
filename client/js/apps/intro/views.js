@@ -17,6 +17,18 @@ var Intro = Marionette.LayoutView.extend({
         header: '#header',
         content: '#content'
     }
+    , events: {
+        'click #login-wnd': 'login'
+        , 'click #signup-wnd': 'signup'
+    }
+    , login: function(e) {
+        e.preventDefault();
+        this.trigger('navigate', 'login');
+    }
+    , signup: function(e) {
+        e.preventDefault();
+		this.trigger('navigate', 'signup');
+    }
 });
 
 var Login = Marionette.ItemView.extend({

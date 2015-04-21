@@ -14,12 +14,12 @@ App.on('intro:intro', function() {
 
 App.on('intro:login', function() {
     App.navigate('login');
-    Controller.showSignup();
+    Controller.login();
 });
 
 App.on('intro:signup', function() {
     App.navigate('signup');
-    Controller.showSignup();
+    Controller.signup();
 });
 
 App.on('before:start', function(){
@@ -27,8 +27,8 @@ App.on('before:start', function(){
         controller: Controller
         , appRoutes: {
             intro: 'showIntro'
-            , login: 'showLogin'
-            , signup: 'showSignup'
+            , login: 'login'
+            , signup: 'signup'
         }
     });
 });

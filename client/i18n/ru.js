@@ -5,7 +5,7 @@
 module.exports = {
 	translation: {
 		intro: 'введение'
-		, login: 'войти'
-		, signup: 'зарегистрироваться'
+		, Login: 'Войти'
+		, Signup: 'Зарегистрироваться'
 	}
 };

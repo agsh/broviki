@@ -20,7 +20,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 ;var locals_for_with = (locals || {});(function (content, i18n) {
-buf.push("<div id=\"header\"><nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Broviki</a></div><div id=\"bs-example-navbar-collapse-1\" class=\"collapse navbar-collapse\"><ul class=\"nav navbar-nav\"></ul></div></nav></div><div id=\"content\">" + (jade.escape((jade_interp = i18n.t(content)) == null ? '' : jade_interp)) + "</div>");}.call(this,"content" in locals_for_with?locals_for_with.content:typeof content!=="undefined"?content:undefined,"i18n" in locals_for_with?locals_for_with.i18n:typeof i18n!=="undefined"?i18n:undefined));;return buf.join("");
+buf.push("<div id=\"header\"><nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Broviki</a></div><ul class=\"nav navbar-nav navbar-right\"><li><a id=\"login-wnd\" href=\"/login\">" + (jade.escape((jade_interp = i18n.t('Login')) == null ? '' : jade_interp)) + "</a></li><li><a id=\"signup-wnd\" href=\"/signup\">" + (jade.escape((jade_interp = i18n.t('Signup')) == null ? '' : jade_interp)) + "</a></li></ul></nav></div><div id=\"content\">" + (jade.escape((jade_interp = i18n.t(content)) == null ? '' : jade_interp)) + "</div>");}.call(this,"content" in locals_for_with?locals_for_with.content:typeof content!=="undefined"?content:undefined,"i18n" in locals_for_with?locals_for_with.i18n:typeof i18n!=="undefined"?i18n:undefined));;return buf.join("");
 },
 "login": function(locals) {
 var buf = [];
