@@ -20,7 +20,7 @@ var Controller = {
     }
     , signup: function(region) {
         var signup = new views.Signup();
-		region.show(login);
+		region.show(signup);
     }
 };
 
