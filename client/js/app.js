@@ -17,7 +17,7 @@ module.exports.App = App;
 
 
 var Test = require('./apps/test/app');
-var Login = require('./apps/login/app');
+var Intro = require('./apps/intro/app');
 
 var RootView = Marionette.LayoutView.extend({
 	template: templates.main

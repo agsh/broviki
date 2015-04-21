@@ -19,7 +19,12 @@ gulp.task('jade', function() {
 		.pipe(jade({
 			client: true
 		}))
-		.pipe(concatJST('templates.js', {basepath: 'client/templates'}))
+		.pipe(concatJST('templates.js', {
+			basepath: 'client/templates'
+			, globals: {
+				__: 'i18n'
+			}
+		}))
 		.pipe(gulp.dest('client/js'))
 });
 
@@ -57,7 +62,7 @@ gulp.task('watch js', function() {
 	gulp.watch('client/js/*.js', ['browserify js']);
 });
 
-gulp.task('other', function() {
+gulp.task('templates and html', function() {
 	gulp.src(['client/index.html'])
 		.pipe(gulp.dest('dist'))
 		;
@@ -66,4 +71,4 @@ gulp.task('other', function() {
 		;
 });
 
-gulp.task('all', ['jade', 'less to css', 'browserify js', 'other']);
+gulp.task('all', ['jade', 'less to css', 'browserify js', 'templates and html']);

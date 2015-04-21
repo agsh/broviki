@@ -13,7 +13,7 @@ var Controller = {
 
 		view.on('login:show', function() {
 			alert('controller show');
-			App.trigger('login:login');
+			App.trigger('intro:intro');
 		});
 	}
 };

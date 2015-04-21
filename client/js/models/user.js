@@ -2,7 +2,9 @@
  * Created by Andrew D.Laptev<a.d.laptev@gmail.com> on 07.04.15.
  */
 
-var Backbone = require('backbone');
+var Backbone = require('backbone')
+	, _ = require('lodash')
+	;
 
 var User = Backbone.Model.extend({
 	initialize: function(){

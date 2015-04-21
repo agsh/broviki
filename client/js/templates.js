@@ -1,4 +1,6 @@
-var jade = require('jade/runtime'); module.exports = {
+var jade = require('jade/runtime');
+var __ = require('i18n');
+module.exports = {
 "cams": function(locals) {
 var buf = [];
 var jade_mixins = {};
@@ -6,12 +8,19 @@ var jade_interp;
 
 buf.push("<div class=\"tabs\"><div class=\"header\"><ul class=\"tab-links\"><li data-tab=\"cams\" class=\"active\"><a><i class=\"fa fa-home fa-2x\"></i></a></li><li data-tab=\"display\"><a><i class=\"fa fa-eye fa-2x\"></i></a></li><li data-tab=\"settings\"><a><i class=\"fa fa-gear fa-2x\"></i></a></li><li data-tab=\"console\"><a><span class=\"fa-stack\"><i class=\"fa fa-square fa-stack-2x\"></i><i class=\"fa fa-terminal fa-stack-1x fa-inverse\"></i></span></a></li><li data-tab=\"links\"><a><i class=\"fa fa-github fa-2x\"></i></a></li></ul></div><div class=\"tab-content\"><div id=\"cams\" class=\"tab active\"><p>Cams</p></div><div id=\"display\" class=\"tab\"><p>Display</p></div><div id=\"settings\" class=\"tab\"><p>Settings</p></div><div id=\"console\" class=\"tab\"><p>Console</p></div><div id=\"links\" class=\"tab\"><p>Other stuff</p></div></div><div class=\"tool-buttons\"><span class=\"minimize\"><a><i class=\"fa fa-compress\"></i></a></span><span class=\"close\"><a><i class=\"fa fa-close\"></i></a></span></div></div>");;return buf.join("");
 },
-"llogin": function(locals) {
+"header": function(locals) {
 var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<body><form id=\"loginForm\"><div class=\"login_form\"><img height=\"90\"/><span class=\"message\"></span><div><input type=\"text\" id=\"name\" name=\"name\" placeholder=\"login\"/></div><div><input type=\"password\" id=\"password\" name=\"password\" placeholder=\"password\"/></div><div><input type=\"submit\" value=\"Login\"/></div></div></form></body>");;return buf.join("");
+buf.push("<nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a href=\"#contacts\" class=\"navbar-brand\">Contact manager</a></div><div id=\"bs-example-navbar-collapse-1\" class=\"collapse navbar-collapse\"><ul class=\"nav navbar-nav\"></ul></div></nav>");;return buf.join("");
+},
+"intro": function(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (content) {
+buf.push("<div id=\"header\"><nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Broviki</a></div><div id=\"bs-example-navbar-collapse-1\" class=\"collapse navbar-collapse\"><ul class=\"nav navbar-nav\"></ul></div></nav></div><div id=\"content\">" + (jade.escape((jade_interp = content) == null ? '' : jade_interp)) + "</div>");}.call(this,"content" in locals_for_with?locals_for_with.content:typeof content!=="undefined"?content:undefined));;return buf.join("");
 },
 "login": function(locals) {
 var buf = [];

@@ -8,8 +8,15 @@ var Marionette = require('backbone.marionette')
     , User = require('../../models/user')
     ;
 
-var Intro = Marionette.ItemView.extend({
-    template: templates.header
+var Intro = Marionette.LayoutView.extend({
+    template: templates.intro
+    , model: new Backbone.Model({
+        content: 'Introy coyntent'
+    })
+    , regions: {
+        header: '#header',
+        content: '#content'
+    }
 });
 
 var Login = Marionette.ItemView.extend({
@@ -34,12 +41,8 @@ var Signup = Marionette.ItemView.extend({
     }
 });
 
-var Header = Marionette.ItemView.extend({
-
-});
-
 module.exports = {
     Login: Login
     , Signup: Signup
-    , Header: Header
+    , Intro: Intro
 };
