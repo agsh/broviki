@@ -11,7 +11,7 @@ var Marionette = require('backbone.marionette')
 var Intro = Marionette.LayoutView.extend({
     template: templates.intro
     , model: new Backbone.Model({
-        content: 'Introy coyntent'
+        content: 'intro'
     })
     , regions: {
         header: '#header',

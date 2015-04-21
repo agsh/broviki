@@ -1,5 +1,5 @@
 var jade = require('jade/runtime');
-var __ = require('i18n');
+var i18n = require('i18next');
 module.exports = {
 "cams": function(locals) {
 var buf = [];
@@ -19,8 +19,8 @@ buf.push("<nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div c
 var buf = [];
 var jade_mixins = {};
 var jade_interp;
-;var locals_for_with = (locals || {});(function (content) {
-buf.push("<div id=\"header\"><nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Broviki</a></div><div id=\"bs-example-navbar-collapse-1\" class=\"collapse navbar-collapse\"><ul class=\"nav navbar-nav\"></ul></div></nav></div><div id=\"content\">" + (jade.escape((jade_interp = content) == null ? '' : jade_interp)) + "</div>");}.call(this,"content" in locals_for_with?locals_for_with.content:typeof content!=="undefined"?content:undefined));;return buf.join("");
+;var locals_for_with = (locals || {});(function (content, i18n) {
+buf.push("<div id=\"header\"><nav style=\"margin-bottom: 0\" class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Broviki</a></div><div id=\"bs-example-navbar-collapse-1\" class=\"collapse navbar-collapse\"><ul class=\"nav navbar-nav\"></ul></div></nav></div><div id=\"content\">" + (jade.escape((jade_interp = i18n.t(content)) == null ? '' : jade_interp)) + "</div>");}.call(this,"content" in locals_for_with?locals_for_with.content:typeof content!=="undefined"?content:undefined,"i18n" in locals_for_with?locals_for_with.i18n:typeof i18n!=="undefined"?i18n:undefined));;return buf.join("");
 },
 "login": function(locals) {
 var buf = [];

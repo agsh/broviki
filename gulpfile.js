@@ -22,7 +22,7 @@ gulp.task('jade', function() {
 		.pipe(concatJST('templates.js', {
 			basepath: 'client/templates'
 			, globals: {
-				__: 'i18n'
+				i18n: 'i18next'
 			}
 		}))
 		.pipe(gulp.dest('client/js'))
