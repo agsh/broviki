@@ -7,5 +7,6 @@ module.exports = {
 		intro: 'введение'
 		, Login: 'Войти'
 		, Signup: 'Зарегистрироваться'
+		, Password: 'Пароль'
 	}
 };

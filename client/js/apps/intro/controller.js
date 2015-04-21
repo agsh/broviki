@@ -15,10 +15,16 @@ var Controller = {
         App.rootView.window.show(intro);
     }
     , login: function(region) {
+		if (!region) {
+			region = App.rootView.window;
+		}
         var login = new views.Login();
         region.show(login);
     }
     , signup: function(region) {
+		if (!region) {
+			region = App.rootView.window;
+		}
         var signup = new views.Signup();
 		region.show(signup);
     }
