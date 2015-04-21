@@ -3,4 +3,4 @@
  */
 
 var App = require('./app').App;
-App.startup();
+App.start();

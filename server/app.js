@@ -55,6 +55,6 @@ exports.start = function(callback) {
 
 if (path.basename(process.argv[1]) === 'app.js') {
 	exports.start(function() {
-		console.log('started');
+		console.log('started at port', config.port);
 	});
 }

@@ -15,6 +15,7 @@ if (window.__agent) {
 var App = new Marionette.Application();
 module.exports.App = App;
 
+
 var Test = require('./apps/test/app');
 var Login = require('./apps/login/app');
 
@@ -23,17 +24,12 @@ var RootView = Marionette.LayoutView.extend({
 	, el: 'body'
 	, regions: {
 		window: '#window'
+		, header: '#header'
 	}
 });
 
 var rootView = App.rootView = new RootView();
 rootView.render();
-
-App.startup = function() {
-	//initTemplates().then(function() {
-		App.start();
-	//});
-};
 
 App.navigate = function(route, options){
 	options || (options = {});
