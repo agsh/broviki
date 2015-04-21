@@ -62,13 +62,10 @@ gulp.task('watch js', function() {
 	gulp.watch('client/js/*.js', ['browserify js']);
 });
 
-gulp.task('templates and html', function() {
+gulp.task('index', function() {
 	gulp.src(['client/index.html'])
 		.pipe(gulp.dest('dist'))
 		;
-	gulp.src('client/templates/*')
-		.pipe(gulp.dest('dist/templates'))
-		;
 });
 
-gulp.task('all', ['jade', 'less to css', 'browserify js', 'templates and html']);
+gulp.task('all', ['jade', 'less to css', 'browserify js', 'index']);
