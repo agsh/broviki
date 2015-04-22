@@ -50,7 +50,6 @@
     "lodash": "^3.4.0",
     "nedb": "^1.1.1",
     "onvif": "^0.2.4",
-    "q": "^2.0.3",
     "serve-static": "^1.9.2",
     "vinyl-transform": "^1.0.0"
   },

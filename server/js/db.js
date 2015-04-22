@@ -3,7 +3,6 @@ const Datastore = require('nedb')
 	, config = require('../config')
 	, bcrypt = require('bcrypt')
 	, dataPath = config.dataPath
-	, Q = require('q')
 	;
 
 var db = {
@@ -17,10 +16,40 @@ var db = {
 	})
 };
 
+function denodeify(nodeStyleFunction, filter) {
+	return function() {
+		var self = this;
+		var functionArguments = new Array(arguments.length + 1);
+		for (var i = 0; i < arguments.length; i += 1) {
+			functionArguments[i] = arguments[i];
+		}
+		function promiseHandler(resolve, reject) {
+			function callbackFunction() {
+				var args = new Array(arguments.length);
+				for (var i = 0; i < args.length; i += 1) {
+					args[i] = arguments[i];
+				}
+				if (filter) {
+					args = filter.apply(self, args);
+				}
+				var error = args[0];
+				var result = args[1];
+				if (error) {
+					return reject(error);
+				}
+				return resolve(result);
+			}
+			functionArguments[functionArguments.length - 1] = callbackFunction;
+			nodeStyleFunction.apply(self, functionArguments);
+		}
+		return new Promise(promiseHandler);
+	};
+}
+
 function promisifyDatastore(datastore) {
-	datastore.insert = Q.denodeify(datastore.insert, datastore);
-	datastore.update = Q.denodeify(datastore.update, datastore);
-	datastore.remove = Q.denodeify(datastore.remove, datastore);
+	datastore.insert = denodeify(datastore.insert);
+	datastore.update = denodeify(datastore.update);
+	datastore.remove = denodeify(datastore.remove);
 }
 
 promisifyDatastore(db.settings);
@@ -28,7 +57,7 @@ promisifyDatastore(db.users);
 
 // This utilizes the exec function on nedb to turn function calls into promises
 var promisifyDb = function(obj) {
-	return Q.Promise(function(resolve, reject) {
+	return new Promise(function(resolve, reject) {
 		obj.exec(function(error, result) {
 			if (error) {
 				return reject(error);
