@@ -29,7 +29,7 @@ node_modules
 
 .idea
 
-# database files
+# Database files
 db/*
 
 # Distribution
