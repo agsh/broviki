@@ -44,7 +44,7 @@ App.on('start', function(options){
 	if (Backbone.history){
 		Backbone.history.start();
 		if (this.getCurrentRoute() === ''){
-			App.trigger('test:test');
+			App.trigger('intro:intro');
 		}
 	}
 });
