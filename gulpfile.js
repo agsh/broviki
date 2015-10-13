@@ -6,8 +6,10 @@ var gulp = require('gulp')
 	, concat = require('gulp-concat')
 	, less = require('gulp-less')
 	, transform = require('vinyl-transform')
+	, buffer = require('vinyl-buffer')
 	, browserify = require('browserify')
 	, sourcemaps = require('gulp-sourcemaps')
+	, source = require('vinyl-source-stream')
 	, uglify = require('gulp-uglify')
 	, jade = require('gulp-jade')
 	, concatJST = require('gulp-jade-jst-concat')
@@ -44,17 +46,14 @@ gulp.task('less to css', function() {
 });
 
 gulp.task('browserify js', function() {
-	var browserified = transform(function(filename) {
-		var b = browserify({entries: filename, debug: true});
-		return b.bundle();
-	});
-	gulp.src('client/js/start.js')
-		.pipe(browserified)
+	return browserify({entries: './client/js/start.js', debug: true}).bundle()
+		.pipe(source('start.js'))
+		.pipe(buffer())
 		.pipe(sourcemaps.init({loadMaps: true}))
 		//.pipe(concat('bundled.js'))
 		.pipe(uglify())
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('dist/js'))
+		.pipe(gulp.dest('./dist/js'))
 		;
 });
 
