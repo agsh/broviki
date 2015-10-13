@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "start": "./server/app.js"
+    "start": "./server/app.js",
+    "build": "gulp all"
   },
   "license": "GPL-2.0",
   "main": "app://host/index.html",
