@@ -14,9 +14,13 @@ Install dependencies
 
 `npm install`
 
+Build Client
+
+`npm run build`
+
 Run server
 
-`npm start`
+`npm run start`
 
 Connect to server in browser `https://localhost:6900`
 
