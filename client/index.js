@@ -1,1 +1,1 @@
-console.log('index');
+import './styles/index.less';
