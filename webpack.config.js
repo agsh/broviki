@@ -20,7 +20,7 @@ module.exports = {
 			, exclude: /node_modules/
 			, loader: 'babel-loader'
 			, options: {
-				presets: ['env']
+				presets: ['env', 'react']
 			}
 		}, {
 			test: /\.less$/
