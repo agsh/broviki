@@ -7,9 +7,7 @@
     "url": "https://github.com/agsh/broviki"
   },
   "scripts": {
-    "test": "mocha",
-    "start": "./server/app.js",
-    "build": "webpack && cp client/index.html dist/index.html"
+    "start": "./server/app.js"
   },
   "license": "GPL-2.0",
   "main": "app://host/index.html",
