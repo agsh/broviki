@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { connect } from "react-redux";
+
+import logo from '../../logo.svg';
 import './App.css';
 import Dashboard from '../Dashboard/Dashboard';
 
 class App extends Component {
   render() {
-    return <Dashboard/>;
+    return (
+        <div>
+          <div>
+            Fetch
+          </div>
+          <Dashboard/>
+        </div>
+    );
     /*return (
       <div className="App">
         <header className="App-header">
@@ -27,4 +36,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    fetching: state.fetching,
+    dog: state.dog,
+    error: state.error
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onRequestDog: () => dispatch({ type: "API_CALL_REQUEST" })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

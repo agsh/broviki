@@ -139,7 +139,7 @@ class Dashboard extends React.Component {
                             noWrap
                             className={classes.title}
                         >
-                            Dashboard
+                            Broviki
                         </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
