@@ -20,6 +20,11 @@ import SimpleLineChart from './SimpleLineChart';
 import SimpleTable from './SimpleTable';
 
 import { GET } from '../../constants/devices';
+import ListSubheader from "@material-ui/core/ListSubheader";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import VideocamIcon from '@material-ui/icons/Videocam';
 
 const drawerWidth = 240;
 
@@ -173,7 +178,19 @@ class Dashboard extends React.Component {
                     <Divider />
                     <List>{mainListItems}</List>
                     <Divider />
-                    <List>{secondaryListItems}</List>
+                    <List>
+                        <div>
+                            <ListSubheader inset>Cameras</ListSubheader>
+                            {this.props.list.map(device => (
+                              <ListItem button>
+                                  <ListItemIcon>
+                                      <VideocamIcon />
+                                  </ListItemIcon>
+                                  <ListItemText primary={device} />
+                              </ListItem>
+                            ))}
+                        </div>
+                    </List>
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />

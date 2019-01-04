@@ -3,7 +3,7 @@ import { takeLatest, call, put } from "redux-saga/effects";
 
 async function getDevices() {
     const response = await fetch('/hello/world');
-    return response.text();
+    return response.json();
 }
 
 export function* watcherGetDevices() {
@@ -15,7 +15,7 @@ function* workerGetDevices() {
         const response = yield call(getDevices);
         yield put({
             type: GET_SUCCESS,
-            list: [response]
+            list: response
         })
     } catch(e) {
         yield put({
