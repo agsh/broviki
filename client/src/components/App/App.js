@@ -7,41 +7,30 @@ import Dashboard from '../Dashboard/Dashboard';
 
 class App extends Component {
   render() {
+      console.log('props', this.props);
+    const { fetching, dog, onRequestDog, error } = this.props;
     return (
         <div>
           <div>
-            Fetch
+            <img src={dog || logo} className="App-logo" alt="logo" />
+            {fetching ?
+                (<button disabled>Fetching...</button>) :
+                (<button onClick={onRequestDog}>Request a Dog</button>)
+            }
           </div>
           <Dashboard/>
         </div>
     );
-    /*return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );*/
   }
 }
 
 const mapStateToProps = state => {
-  return {
+  return state.dog
+  /*return {
     fetching: state.fetching,
     dog: state.dog,
     error: state.error
-  };
+  };*/
 };
 
 const mapDispatchToProps = dispatch => {
