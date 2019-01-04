@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,6 +18,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import SimpleLineChart from './SimpleLineChart';
 import SimpleTable from './SimpleTable';
+
+import { GET } from '../../constants/devices';
 
 const drawerWidth = 240;
 
@@ -110,8 +113,15 @@ class Dashboard extends React.Component {
         this.setState({ open: false });
     };
 
+    componentDidMount() {
+        this.props.onRequestDevices();
+    };
+
     render() {
         const { classes } = this.props;
+
+        console.log(this.props);
+        console.log(this.state);
 
         return (
             <div className={classes.root}>
@@ -189,4 +199,20 @@ Dashboard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Dashboard);
+
+const mapStateToProps = state => {
+    return state.devices
+    /*return {
+      fetching: state.fetching,
+      dog: state.dog,
+      error: state.error
+    };*/
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onRequestDevices: () => dispatch({ type: GET })
+    };
+};
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

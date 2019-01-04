@@ -7,7 +7,7 @@ import Dashboard from '../Dashboard/Dashboard';
 
 class App extends Component {
   render() {
-      console.log('props', this.props);
+    console.log('props', this.props);
     const { fetching, dog, onRequestDog, error } = this.props;
     return (
         <div>

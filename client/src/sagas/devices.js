@@ -12,10 +12,10 @@ export function* watcherGetDevices() {
 
 function* workerGetDevices() {
     try {
-        const response = yield getDevices();
+        const response = yield call(getDevices);
         yield put({
             type: GET_SUCCESS,
-            text: response
+            list: [response]
         })
     } catch(e) {
         yield put({
