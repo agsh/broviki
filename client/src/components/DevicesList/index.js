@@ -6,11 +6,11 @@ import VideocamIcon from "@material-ui/icons/Videocam";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import {GET} from "../../constants/devices";
-import {withStyles} from "@material-ui/core";
 import connect from "react-redux/es/connect/connect";
 
 class DevicesList extends List {
   componentDidMount() {
+    console.log('did mount')
     this.props.onRequestDevices();
   };
 

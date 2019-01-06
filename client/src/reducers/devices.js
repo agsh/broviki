@@ -9,6 +9,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET:
+      console.log('GET')
       return { ...state, fetching: true, error: null };
     case GET_SUCCESS:
       return { ...state, fetching: false, list: action.list };

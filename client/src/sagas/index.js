@@ -4,8 +4,8 @@ import { watcherGetDevices as devices } from './devices';
 import { watcherSaga as dogs } from '../sagas.js'
 
 export default function* sagas() {
-  yield all(
+  yield all([
     fork(devices),
     fork(dogs)
-  );
+  ]);
 }
