@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,16 +14,10 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 import SimpleLineChart from './SimpleLineChart';
 import SimpleTable from './SimpleTable';
-
-import { GET } from '../../constants/devices';
-import ListSubheader from "@material-ui/core/ListSubheader";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import VideocamIcon from '@material-ui/icons/Videocam';
+import DevicesList from '../DevicesList';
 
 const drawerWidth = 240;
 
@@ -118,10 +111,6 @@ class Dashboard extends React.Component {
         this.setState({ open: false });
     };
 
-    componentDidMount() {
-        this.props.onRequestDevices();
-    };
-
     render() {
         const { classes } = this.props;
 
@@ -178,19 +167,7 @@ class Dashboard extends React.Component {
                     <Divider />
                     <List>{mainListItems}</List>
                     <Divider />
-                    <List>
-                        <div>
-                            <ListSubheader inset>Cameras</ListSubheader>
-                            {this.props.list.map(device => (
-                              <ListItem button>
-                                  <ListItemIcon>
-                                      <VideocamIcon />
-                                  </ListItemIcon>
-                                  <ListItemText primary={device} />
-                              </ListItem>
-                            ))}
-                        </div>
-                    </List>
+                    <DevicesList/>
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />
@@ -216,20 +193,4 @@ Dashboard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-
-const mapStateToProps = state => {
-    return state.devices
-    /*return {
-      fetching: state.fetching,
-      dog: state.dog,
-      error: state.error
-    };*/
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onRequestDevices: () => dispatch({ type: GET })
-    };
-};
-
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default withStyles(styles)(Dashboard);

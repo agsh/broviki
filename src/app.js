@@ -1,7 +1,7 @@
 const restify = require('restify');
 
 function respond(req, res, next) {
-    res.send(['asd','sdf','eeee', 'Ася - повелительница швабры']);
+    res.send(['asd','sdf','eeee', 'Lol']);
     next();
 }
 
