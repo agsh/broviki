@@ -13,6 +13,7 @@
   "main": "app://host/index.html",
   "version": "0.0.1",
   "dependencies": {
+    "onvif": "^0.6.0",
     "restify": "^7.4.0"
   },
   "devDependencies": {

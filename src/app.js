@@ -1,14 +1,24 @@
+const { promisify } = require('util');
 const restify = require('restify');
+const onvif = require('onvif');
 
-function respond(req, res, next) {
-    res.send(['asd','sdf','eeee', 'Lol']);
-    next();
-}
+(async function() {
+    const result = await promisify(onvif.Discovery.probe)();
+    console.log(result);
 
-const server = restify.createServer();
-server.get('/hello/:name', respond);
-server.head('/hello/:name', respond);
+    function respond(req, res, next) {
+        res.send(result.map(cam => cam.hostname));
+        next();
+    }
 
-server.listen(6408, () => {
-    console.log('%s listening at %s', server.name, server.url);
-});
+    const server = restify.createServer();
+    server.get('/hello/:name', respond);
+    server.head('/hello/:name', respond);
+
+    server.listen(6408, () => {
+        console.log('%s listening at %s', server.name, server.url);
+    });
+
+})();
+
+
