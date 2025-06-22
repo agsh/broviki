@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Discovery } from 'onvif/src/discovery';
+import { Discovery } from 'onvif/src';
 
-// Обработка GET-запроса
 export async function GET() {
   console.log('GET');
   const result = await Discovery.probe({
     resolve: true,
   });
-  console.log(result);
   return NextResponse.json(result.map(cam => ({
     hostname: cam.hostname,
     port: cam.port,
