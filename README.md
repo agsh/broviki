@@ -14,3 +14,15 @@ npm run dev
 ```
 
 Open in browser [http://localhost:3000](http://localhost:3000)
+
+### Things that work:
+- Add a new camera (hostname, port, username, password, useSecure, useWSSecurity, path)
+- Add cameras from the SOAP-Discovery
+- Remove a camera
+- Select a camera
+- Change camera settings
+- Connect to a camera and get capabilities
+- Get a camera snapshot
+
+### Things that don't work yet:
+- Everything else

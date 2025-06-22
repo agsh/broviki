@@ -10,14 +10,6 @@ interface CameraPropertiesProps {
   onCameraUpdate?: (updatedCamera: CameraConfig) => void;
 }
 
-interface CameraStatus {
-  status: 'connected' | 'disconnected' | 'connecting';
-  message?: string;
-  capabilities?: any;
-  stats?: any;
-  lastRefresh?: string;
-}
-
 type TabType = 'general' | 'network' | 'security' | 'capabilities';
 
 // JSON Tree Component
@@ -138,13 +130,11 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
   const [activeTab, setActiveTab] = useState<TabType>('general');
   const [editedCamera, setEditedCamera] = useState<CameraConfig>(camera);
   const [isLoading, setIsLoading] = useState(false);
-  const [cameraStatus, setCameraStatus] = useState<CameraStatus>({ status: 'disconnected' });
 
   // Update editedCamera when camera prop changes
   useEffect(() => {
-    setEditedCamera(camera);
     // Reset camera status when switching cameras
-    setCameraStatus({ status: 'disconnected' });
+    setEditedCamera(camera);
   }, [camera]);
 
   // Cleanup timeout on unmount
@@ -220,26 +210,31 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
       const result = await response.json();
       
       if (result.success) {
-        setCameraStatus({
+        const updatedCamera = {
+          ...editedCamera,
+          capabilities: result.capabilities,
+          snapshotUri: result.snapshotUri,
           status: result.status,
           message: result.message,
-          capabilities: result.capabilities,
-          stats: result.stats,
-          lastRefresh: result.lastRefresh
-        });
-        
+        };
+        setEditedCamera(updatedCamera);
+        // Update the parent component immediately for UI responsiveness
+        onCameraUpdate?.(updatedCamera);
+
         // Switch to capabilities tab if we received capabilities data
         if (action === 'connect' && result.capabilities) {
           setActiveTab('capabilities');
         }
       } else {
-        setCameraStatus({
+        setEditedCamera({
+          ...editedCamera,
           status: 'disconnected',
           message: result.message || 'Action failed'
         });
       }
     } catch (error) {
-      setCameraStatus({
+      setEditedCamera({
+        ...editedCamera,
         status: 'disconnected',
         message: 'Network error occurred'
       });
@@ -261,16 +256,16 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
         
         <div className="flex items-center gap-2">
           <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs ${
-            cameraStatus.status === 'connected' ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400' :
-            cameraStatus.status === 'connecting' ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400' :
+            editedCamera.status === 'connected' ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400' :
+            editedCamera.status === 'connecting' ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400' :
             'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400'
           }`}>
             <div className={`w-2 h-2 rounded-full ${
-              cameraStatus.status === 'connected' ? 'bg-green-500' :
-              cameraStatus.status === 'connecting' ? 'bg-yellow-500' :
+              editedCamera.status === 'connected' ? 'bg-green-500' :
+              editedCamera.status === 'connecting' ? 'bg-yellow-500' :
               'bg-gray-400'
             }`} />
-            {cameraStatus.status === 'connecting' ? 'Connecting...' : cameraStatus.status}
+            {editedCamera.status === 'connecting' ? 'Connecting...' : editedCamera.status}
           </div>
           
           <button
@@ -294,12 +289,12 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
       </div>
       
       {/* Status Message */}
-      {cameraStatus.message && (
+      {editedCamera.message && (
         <div className={`px-4 py-2 text-sm border-b border-gray-200 dark:border-gray-700 ${
-          cameraStatus.status === 'connected' ? 'bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-400' :
+            editedCamera.status === 'connected' ? 'bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-400' :
           'bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-400'
         }`}>
-          {cameraStatus.message}
+          {editedCamera.message}
         </div>
       )}
       
@@ -316,7 +311,7 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
             }`}
           >
             {tab.label}
-            {tab.id === 'capabilities' && cameraStatus.capabilities && (
+            {tab.id === 'capabilities' && editedCamera.capabilities && (
               <span className="ml-1 w-2 h-2 bg-blue-500 rounded-full inline-block" />
             )}
           </button>
@@ -418,32 +413,32 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
               </label>
               <div className="px-3 py-2">
                 <span className={`px-2 py-1 text-xs rounded ${
-                  cameraStatus.status === 'connected' ? 'bg-green-100 dark:bg-green-700 text-green-600 dark:text-green-400' :
-                  cameraStatus.status === 'connecting' ? 'bg-yellow-100 dark:bg-yellow-700 text-yellow-600 dark:text-yellow-400' :
+                  editedCamera.status === 'connected' ? 'bg-green-100 dark:bg-green-700 text-green-600 dark:text-green-400' :
+                  editedCamera.status === 'connecting' ? 'bg-yellow-100 dark:bg-yellow-700 text-yellow-600 dark:text-yellow-400' :
                   'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                 }`}>
-                  {cameraStatus.status === 'connecting' ? 'Connecting...' : cameraStatus.status}
+                  {editedCamera.status === 'connecting' ? 'Connecting...' : editedCamera.status}
                 </span>
               </div>
             </div>
             
-            {cameraStatus.stats && (
+            {editedCamera.stats && (
               <div className="col-span-2 grid grid-cols-2 gap-2 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-md">
                 <div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">Frame Rate</div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-white">{cameraStatus.stats.frameRate} fps</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-white">{editedCamera.stats.frameRate} fps</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">Bitrate</div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-white">{cameraStatus.stats.bitrate} kbps</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-white">{editedCamera.stats.bitrate} kbps</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">Bytes Received</div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-white">{cameraStatus.stats.bytesReceived.toLocaleString()}</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-white">{editedCamera.stats.bytesReceived.toLocaleString()}</div>
                 </div>
                 <div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">Bytes Sent</div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-white">{cameraStatus.stats.bytesSent.toLocaleString()}</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-white">{editedCamera.stats.bytesSent.toLocaleString()}</div>
                 </div>
               </div>
             )}
@@ -538,7 +533,7 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
         
         {activeTab === 'capabilities' && (
           <div>
-            {cameraStatus.capabilities ? (
+            {editedCamera.capabilities ? (
               <div>
                 <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-md">
                   <h3 className="text-sm font-medium text-blue-800 dark:text-blue-400 mb-1">
@@ -547,13 +542,13 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
                   <p className="text-xs text-blue-600 dark:text-blue-300">
                     Discovered capabilities from the connected camera. Click to expand/collapse sections.
                   </p>
-                  {cameraStatus.lastRefresh && (
+                  {editedCamera.lastRefresh && (
                     <p className="text-xs text-blue-600 dark:text-blue-300 mt-1">
-                      Last updated: {new Date(cameraStatus.lastRefresh).toLocaleString()}
+                      Last updated: {new Date(editedCamera.lastRefresh).toLocaleString()}
                     </p>
                   )}
                 </div>
-                <JsonTree data={cameraStatus.capabilities} />
+                <JsonTree data={editedCamera.capabilities} />
               </div>
             ) : (
               <div className="text-center py-8 text-gray-500 dark:text-gray-400">

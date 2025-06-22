@@ -18,7 +18,7 @@ export default function VideoWindow({ camera, height }: VideoWindowProps) {
       </div>
     );
   }
-
+  console.log('camera',camera);
   return (
     <div 
       className="bg-black flex items-center justify-center"
@@ -32,6 +32,7 @@ export default function VideoWindow({ camera, height }: VideoWindowProps) {
           <p className="text-sm text-gray-400">
             Stream URL: {camera.useSecure ? 'https' : 'http'}://{camera.hostname}:{camera.port}{camera.path}
           </p>
+          <img src={camera.snapshotUri} alt="Camera Stream" className="mt-4" />
         </div>
       </div>
     </div>

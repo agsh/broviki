@@ -75,6 +75,19 @@ export default function Home() {
   }, [videoHeight]);
 
   useEffect(() => {
+    handleDiscovery();
+  }, []);
+
+  const handleAddCamera = (camera: CameraConfig) => {
+    setCameras((prev) => {
+      if (prev.some((cam) => cam.id === camera.id)) {
+        return prev;
+      }
+      return [...prev, camera]
+    });
+  };
+
+  const handleDiscovery = async () => {
     fetch('/api/startup')
       .then((response) => response.json())
       .then((data) => {
@@ -89,22 +102,14 @@ export default function Home() {
             useWSSecurity: cam.useWSSecurity,
             path: cam.path,
             name: cam.hostname + ':' + cam.port,
+            status: 'disconnected',
           });
         });
       })
       .catch((error) => {
         console.error('Startup error:', error);
       });
-  }, []);
-
-  const handleAddCamera = (camera: CameraConfig) => {
-    setCameras((prev) => {
-      if (prev.some((cam) => cam.id === camera.id)) {
-        return prev;
-      }
-      return [...prev, camera]
-    });
-  };
+  }
 
   const handleRemoveCamera = (id: string) => {
     setCameras((prev) => prev.filter((camera) => camera.id !== id));
@@ -190,6 +195,7 @@ export default function Home() {
           onCameraSelect={handleCameraSelect}
           onCameraAdd={handleAddCamera}
           onCameraRemove={handleRemoveCamera}
+          onDiscovery={handleDiscovery}
           width={leftPanelWidth}
         />
 

@@ -10,6 +10,7 @@ interface CameraConfig {
   path: string;
   useSecure: boolean;
   useWSSecurity: boolean;
+  snapshotUri?: string;
 }
 
 interface UpdateCameraRequest {

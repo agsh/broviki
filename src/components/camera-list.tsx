@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Camera, Plus, Trash2 } from 'lucide-react';
+import {Camera, Plus, Telescope, Trash2} from 'lucide-react';
 
 export interface CameraConfig {
   id: string;
+  status: 'connected' | 'disconnected' | 'connecting';
+  message?: string;
   hostname: string;
   port?: number;
   username?: string;
@@ -13,6 +15,11 @@ export interface CameraConfig {
   useWSSecurity: boolean;
   path: string;
   name?: string;
+  snapshotUri?: string;
+  streamUri?: string;
+  capabilities?: any;
+  stats?: any;
+  lastRefresh?: number;
 }
 
 interface CameraFormData {
@@ -32,6 +39,7 @@ interface CameraListProps {
   onCameraSelect: (camera: CameraConfig) => void;
   onCameraAdd: (camera: CameraConfig) => void;
   onCameraRemove: (id: string) => void;
+  onDiscovery: () => void;
   width: number;
 }
 
@@ -41,6 +49,7 @@ export default function CameraList({
   onCameraSelect,
   onCameraAdd,
   onCameraRemove,
+  onDiscovery,
   width
 }: CameraListProps) {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -76,6 +85,7 @@ export default function CameraList({
       useWSSecurity: formData.useWSSecurity,
       path: formData.path.trim() || '/onvif/device_service',
       name: formData.name.trim() || formData.hostname.trim(),
+      status: 'disconnected',
     };
 
     onCameraAdd(newCamera);
@@ -110,13 +120,22 @@ export default function CameraList({
             <Camera className="w-5 h-5" />
             Video Cameras
           </h1>
-          <button
-            onClick={() => setShowAddForm(!showAddForm)}
-            className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
-            title="Add Camera"
-          >
-            <Plus className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onDiscovery}
+              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
+              title="Discover"
+            >
+              <Telescope className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setShowAddForm(!showAddForm)}
+              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
+              title="Add Camera"
+            >
+              <Plus className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Add Camera Form */}
