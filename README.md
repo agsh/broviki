@@ -24,5 +24,7 @@ Open in browser [http://localhost:3000](http://localhost:3000)
 - Connect to a camera and get capabilities
 - Get a camera snapshot
 
+![image](https://github.com/user-attachments/assets/f26f47e6-52ba-4f37-9c25-3a7a4f36767e)
+
 ### Things that don't work yet:
 - Everything else
