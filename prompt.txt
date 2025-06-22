@@ -1,0 +1,16 @@
+I want to create an application that manage video cameras in page.tsx
+
+The layout divided into 2 parts.
+
+The left part is the list of the video cameras. We can add, remove cameras.
+
+To add a new camera we need these parameters:
+- hostname, required
+- port, optional, defaults 80 if useSecure is false and 443 if useSecure is true
+- username, optional
+- password, optional
+- useSecure, boolean, defaults false
+- useWSSecurity, boolean, defaults false
+- path, optional, defaults "/onvif/device_service"
+
+The right part is the window with video at the top and properties and settings at the bottom for the selected video camera.
