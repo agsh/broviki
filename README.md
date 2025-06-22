@@ -1,6 +1,6 @@
 ## Broviki
 
-![broviki](https://github.com/user-attachments/assets/886d4747-a36b-4df5-bdd6-4e2b52491367)
+![broviki-removebg-preview](https://github.com/user-attachments/assets/2e52e226-c5fc-4d04-9b19-40b06cc15d53)
 
 This ia a demo project that allows you to manage video cameras 
 and demonstrates the possibilities of the Onvif library version 1.
