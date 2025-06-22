@@ -1,5 +1,5 @@
 import { CameraConfig } from "@/components/camera-list";
-import { Onvif } from 'onvif/src';
+import { Onvif } from 'onvif';
 
 const cameras = new Map();
 

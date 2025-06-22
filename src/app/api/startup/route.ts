@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Discovery } from 'onvif/src';
+import { Discovery } from 'onvif';
 
 export async function GET() {
   console.log('GET');

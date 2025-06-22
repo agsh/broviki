@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="feat: editable properties, server client-server interaction">
-      <change afterPath="$PROJECT_DIR$/src/app/api/onvif.ts" afterDir="false" />
+    <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="feat: display camera capabilities after connect">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/cam/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cam/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/onvif.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/onvif.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/api/startup/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/startup/route.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +58,7 @@
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Debug",
+    "npm.dev.executor": "Run",
     "npm.lint.executor": "Run",
     "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
     "ts.external.directory.path": "/home/agsh/git/broviki/node_modules/typescript/lib",
@@ -116,7 +113,7 @@
       <workItem from="1750576923262" duration="5464000" />
       <workItem from="1750582440916" duration="6765000" />
       <workItem from="1750597635973" duration="134000" />
-      <workItem from="1750598992970" duration="4447000" />
+      <workItem from="1750598992970" duration="5135000" />
     </task>
     <task id="LOCAL-00001" summary="feat: next.js version">
       <option name="closed" value="true" />
@@ -150,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750599742655</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: display camera capabilities after connect">
+      <option name="closed" value="true" />
+      <created>1750605040912</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750605040912</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +165,8 @@
     <MESSAGE value="feat: next.js version" />
     <MESSAGE value="feat: add cameras from discovery" />
     <MESSAGE value="feat: editable properties, server client-server interaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: editable properties, server client-server interaction" />
+    <MESSAGE value="feat: display camera capabilities after connect" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: display camera capabilities after connect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
