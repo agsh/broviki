@@ -67,7 +67,7 @@ export default function CameraList({
     const port = formData.port ? parseInt(formData.port) : defaultPort;
 
     const newCamera: CameraConfig = {
-      id: Date.now().toString(),
+      id: formData.hostname.trim() + ':' + port,
       hostname: formData.hostname.trim(),
       port,
       username: formData.username.trim() || undefined,

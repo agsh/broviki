@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CameraList, { CameraConfig } from '../components/camera-list';
 import RightPanel from '../components/right-panel';
 import Resizer from '../components/resizer';
@@ -20,12 +20,12 @@ export default function Home() {
     const savedSelectedCamera = localStorage.getItem('selectedCamera');
     const savedLeftPanelWidth = localStorage.getItem('leftPanelWidth');
     const savedVideoHeight = localStorage.getItem('videoHeight');
-    
+
     if (savedCameras) {
       try {
         const parsedCameras = JSON.parse(savedCameras);
         setCameras(parsedCameras);
-        
+
         if (savedSelectedCamera) {
           const selectedId = JSON.parse(savedSelectedCamera);
           const selected = parsedCameras.find((cam: CameraConfig) => cam.id === selectedId);
@@ -37,13 +37,13 @@ export default function Home() {
         console.error('Failed to load cameras from localStorage:', error);
       }
     }
-    
+
     if (savedLeftPanelWidth) {
-      setLeftPanelWidth(parseInt(savedLeftPanelWidth));
+      setLeftPanelWidth(parseInt(savedLeftPanelWidth, 10));
     }
-    
+
     if (savedVideoHeight) {
-      setVideoHeight(parseInt(savedVideoHeight));
+      setVideoHeight(parseInt(savedVideoHeight, 10));
     }
   }, []);
 
@@ -74,12 +74,41 @@ export default function Home() {
     localStorage.setItem('videoHeight', videoHeight.toString());
   }, [videoHeight]);
 
+  useEffect(() => {
+    console.log('Страница загружена (клиент)');
+    fetch('/api/startup')
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((cam: CameraConfig) => {
+          handleAddCamera({
+            id: cam.hostname + ':' + cam.port,
+            hostname: cam.hostname,
+            port: cam.port,
+            username: cam.username,
+            password: cam.password,
+            useSecure: cam.useSecure,
+            useWSSecurity: cam.useWSSecurity,
+            path: cam.path,
+            name: cam.hostname + ':' + cam.port,
+          });
+        });
+      })
+      .catch((error) => {
+        console.error('Startup error:', error);
+      });
+  }, []);
+
   const handleAddCamera = (camera: CameraConfig) => {
-    setCameras(prev => [...prev, camera]);
+    setCameras((prev) => {
+      if (prev.some((cam) => cam.id === camera.id)) {
+        return prev;
+      }
+      return [...prev, camera]
+    });
   };
 
   const handleRemoveCamera = (id: string) => {
-    setCameras(prev => prev.filter(camera => camera.id !== id));
+    setCameras((prev) => prev.filter((camera) => camera.id !== id));
     if (selectedCamera?.id === id) {
       setSelectedCamera(null);
     }
@@ -129,7 +158,7 @@ export default function Home() {
     if (isResizing) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
-      
+
       return () => {
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
@@ -139,7 +168,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div 
+      <div
         ref={containerRef}
         className="flex h-screen"
         style={{ cursor: isResizing ? (resizeType === 'horizontal' ? 'ew-resize' : 'ns-resize') : 'default' }}
