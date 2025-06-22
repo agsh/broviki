@@ -75,7 +75,6 @@ export default function Home() {
   }, [videoHeight]);
 
   useEffect(() => {
-    console.log('Страница загружена (клиент)');
     fetch('/api/startup')
       .then((response) => response.json())
       .then((data) => {
@@ -116,6 +115,18 @@ export default function Home() {
 
   const handleCameraSelect = (camera: CameraConfig) => {
     setSelectedCamera(camera);
+  };
+
+  const handleCameraUpdate = (updatedCamera: CameraConfig) => {
+    // Update the camera in the cameras array
+    setCameras(prev => 
+      prev.map(cam => cam.id === updatedCamera.id ? updatedCamera : cam)
+    );
+    
+    // Update selected camera if it's the one being updated
+    if (selectedCamera?.id === updatedCamera.id) {
+      setSelectedCamera(updatedCamera);
+    }
   };
 
   // Resize handlers
@@ -189,6 +200,7 @@ export default function Home() {
           width={100 - leftPanelWidth}
           videoHeight={videoHeight}
           onVerticalResize={handleVerticalResize}
+          onCameraUpdate={handleCameraUpdate}
         />
       </div>
     </div>

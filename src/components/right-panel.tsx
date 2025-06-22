@@ -8,13 +8,15 @@ interface RightPanelProps {
   width: number;
   videoHeight: number;
   onVerticalResize: (e: React.MouseEvent) => void;
+  onCameraUpdate?: (camera: CameraConfig) => void;
 }
 
 export default function RightPanel({ 
   camera, 
   width, 
   videoHeight, 
-  onVerticalResize 
+  onVerticalResize,
+  onCameraUpdate
 }: RightPanelProps) {
   return (
     <div 
@@ -25,7 +27,11 @@ export default function RightPanel({
         <>
           <VideoWindow camera={camera} height={videoHeight} />
           <Resizer direction="vertical" onMouseDown={onVerticalResize} />
-          <CameraProperties camera={camera} height={100 - videoHeight} />
+          <CameraProperties 
+            camera={camera} 
+            height={100 - videoHeight} 
+            onCameraUpdate={onCameraUpdate}
+          />
         </>
       ) : (
         <VideoWindow camera={null} height={100} />
