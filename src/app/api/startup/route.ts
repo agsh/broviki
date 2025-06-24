@@ -12,7 +12,7 @@ export async function GET() {
     username: cam.username,
     password: cam.password,
     useSecure: cam.useSecure,
-    useWSSecurity: cam.useWSSecurity,
+    useWSSecurity: false,
     path: cam.path,
   })));
 }
