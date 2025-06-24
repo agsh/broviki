@@ -25,13 +25,20 @@ export async function POST(request: NextRequest) {
       const onvif = await add(body);
 
       const capabilities = onvif.defaultProfile;
-      const snapshot = await onvif.media.getSnapshotUri();
+      let snapshot;
+      try {
+        snapshot = await onvif.media.getSnapshotUri();
+      } catch(e) {
+        snapshot = {
+          uri: ''
+        };
+      }
       return NextResponse.json({
         success: true,
         message: 'Connected successfully',
         status: 'connected',
         capabilities,
-        snapshotUri: snapshot.uri,
+        snapshotUri: snapshot?.uri,
       });
     } else if (body.action === 'refresh') {
       return NextResponse.json({

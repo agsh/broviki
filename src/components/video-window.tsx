@@ -26,7 +26,7 @@ export default function VideoWindow({ camera, height }: VideoWindowProps) {
           cameraId: camera.id,
           command,
           direction,
-          speed: 0.5
+          speed: 1
         }),
       });
 

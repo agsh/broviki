@@ -11,11 +11,12 @@ interface ControlRequest {
 export async function POST(request: NextRequest) {
   try {
     const body: ControlRequest = await request.json();
-    const { cameraId, command, direction, speed = 0.5 } = body;
+    const { cameraId, command, direction, speed = 1 } = body;
 
     // Get the camera from the onvif cameras map
     const cameras = list();
     const onvif = cameras.get(cameraId);
+    console.log('+');
 
     if (!onvif) {
       return NextResponse.json({
@@ -28,48 +29,84 @@ export async function POST(request: NextRequest) {
       switch (command) {
         case 'pan':
           if (direction === 'left') {
-            await onvif.ptz.continuousMove({
-              x: -speed,
-              y: 0,
-              zoom: 0
+            await onvif.ptz.relativeMove({
+              translation: {
+                panTilt: {
+                  x: speed,
+                  y: 0,
+                },
+                zoom: {
+                  x: 0,
+                }
+              }
             });
           } else if (direction === 'right') {
-            await onvif.ptz.continuousMove({
-              x: speed,
-              y: 0,
-              zoom: 0
+            await onvif.ptz.relativeMove({
+              translation: {
+                panTilt: {
+                  x: -speed,
+                  y: 0,
+                },
+                zoom: {
+                  x: 0,
+                }
+              }
             });
           }
           break;
 
         case 'tilt':
           if (direction === 'up') {
-            await onvif.ptz.continuousMove({
-              x: 0,
-              y: speed,
-              zoom: 0
+            await onvif.ptz.relativeMove({
+              translation: {
+                panTilt: {
+                  x: 0,
+                  y: -speed,
+                },
+                zoom: {
+                  x: 0,
+                }
+              }
             });
           } else if (direction === 'down') {
-            await onvif.ptz.continuousMove({
-              x: 0,
-              y: -speed,
-              zoom: 0
+            await onvif.ptz.relativeMove({
+              translation: {
+                panTilt: {
+                  x: 0,
+                  y: speed,
+                },
+                zoom: {
+                  x: 0,
+                }
+              }
             });
           }
           break;
 
         case 'zoom':
           if (direction === 'in') {
-            await onvif.ptz.continuousMove({
-              x: 0,
-              y: 0,
-              zoom: speed
+            await onvif.ptz.relativeMove({
+              translation: {
+                panTilt: {
+                  x: 0,
+                  y: 0,
+                },
+                zoom: {
+                  x: speed,
+                }
+              }
             });
           } else if (direction === 'out') {
-            await onvif.ptz.continuousMove({
-              x: 0,
-              y: 0,
-              zoom: -speed
+            await onvif.ptz.relativeMove({
+              translation: {
+                panTilt: {
+                  x: 0,
+                  y: 0,
+                },
+                zoom: {
+                  x: -speed,
+                }
+              }
             });
           }
           break;

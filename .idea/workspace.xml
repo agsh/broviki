@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="chore: opens the `Security` tab if no username or password is set">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/cam/control/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cam/control/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/cam/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cam/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/onvif.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/onvif.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/startup/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/startup/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/video-window.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/video-window.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,27 +50,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/agsh/git/broviki/src/app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;/home/agsh/git/broviki/node_modules/eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lint.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/agsh/git/broviki/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "/run/media/agsh/base.home/agsh/git/onvif-test-promises",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "/home/agsh/git/broviki/node_modules/eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.lint.executor": "Run",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "/home/agsh/git/broviki/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app" />
@@ -122,6 +127,7 @@
       <workItem from="1750598992970" duration="21672000" />
       <workItem from="1750754339542" duration="622000" />
       <workItem from="1750782133114" duration="5466000" />
+      <workItem from="1750803095653" duration="3105000" />
     </task>
     <task id="LOCAL-00001" summary="feat: next.js version">
       <option name="closed" value="true" />
@@ -241,8 +247,20 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/api/onvif.ts</url>
-          <line>13</line>
+          <line>14</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../onvif/src/onvif.ts</url>
+          <line>666</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/app/api/cam/control/route.ts</url>
+          <line>17</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
