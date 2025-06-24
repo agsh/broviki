@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="fix: use onvif library build">
+    <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="chore: opens the `Security` tab if no username or password is set">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/cam/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cam/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/cameras/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cameras/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/startup/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/startup/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/camera-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/camera-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/camera-properties.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/camera-properties.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/video-window.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/video-window.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +34,9 @@
     &quot;accountId&quot;: &quot;60ee8530-7320-415c-a263-82eaa61d0db8&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -50,27 +45,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "/home/agsh/git/broviki",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "/home/agsh/git/broviki/node_modules/eslint",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "npm.lint.executor": "Run",
-    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
-    "ts.external.directory.path": "/home/agsh/git/broviki/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/agsh/git/broviki/src/app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;/home/agsh/git/broviki/node_modules/eslint&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.lint.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/agsh/git/broviki/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -119,7 +119,9 @@
       <workItem from="1750576923262" duration="5464000" />
       <workItem from="1750582440916" duration="6765000" />
       <workItem from="1750597635973" duration="134000" />
-      <workItem from="1750598992970" duration="15487000" />
+      <workItem from="1750598992970" duration="21672000" />
+      <workItem from="1750754339542" duration="622000" />
+      <workItem from="1750782133114" duration="5466000" />
     </task>
     <task id="LOCAL-00001" summary="feat: next.js version">
       <option name="closed" value="true" />
@@ -169,7 +171,39 @@
       <option name="project" value="LOCAL" />
       <updated>1750610239937</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: show screenshot, reworked logic">
+      <option name="closed" value="true" />
+      <created>1750623494212</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1750623494212</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chore: icon and title">
+      <option name="closed" value="true" />
+      <created>1750627024167</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1750627024167</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chore: set WS-Security to `false` by default">
+      <option name="closed" value="true" />
+      <created>1750794919178</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1750794919178</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chore: opens the `Security` tab if no username or password is set">
+      <option name="closed" value="true" />
+      <created>1750799278633</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1750799278633</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +215,11 @@
     <MESSAGE value="feat: editable properties, server client-server interaction" />
     <MESSAGE value="feat: display camera capabilities after connect" />
     <MESSAGE value="fix: use onvif library build" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: use onvif library build" />
+    <MESSAGE value="feat: show screenshot, reworked logic" />
+    <MESSAGE value="chore: icon and title" />
+    <MESSAGE value="chore: set WS-Security to `false` by default" />
+    <MESSAGE value="chore: opens the `Security` tab if no username or password is set" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: opens the `Security` tab if no username or password is set" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -204,7 +242,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/api/onvif.ts</url>
           <line>13</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
