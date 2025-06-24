@@ -126,10 +126,22 @@ function JsonTree({ data, level = 0 }: JsonTreeProps) {
   );
 }
 
+const tabs = [
+  { id: 'general' as TabType, label: 'General' },
+  { id: 'network' as TabType, label: 'Network' },
+  { id: 'security' as TabType, label: 'Security' },
+  { id: 'capabilities' as TabType, label: 'Capabilities' },
+];
+
 export default function CameraProperties({ camera, height, onCameraUpdate }: CameraPropertiesProps) {
   const [activeTab, setActiveTab] = useState<TabType>('general');
   const [editedCamera, setEditedCamera] = useState<CameraConfig>(camera);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Reset tab when switching cameras
+    setActiveTab(!camera?.password ? 'security' : 'general');
+  }, [camera?.id]);
 
   // Update editedCamera when camera prop changes
   useEffect(() => {
@@ -145,13 +157,6 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
       }
     };
   }, []);
-
-  const tabs = [
-    { id: 'general' as TabType, label: 'General' },
-    { id: 'network' as TabType, label: 'Network' },
-    { id: 'security' as TabType, label: 'Security' },
-    { id: 'capabilities' as TabType, label: 'Capabilities' },
-  ];
 
   const handleFieldChange = async (field: keyof CameraConfig, value: any) => {
     const updated = { ...editedCamera, [field]: value };
@@ -449,7 +454,7 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Username
+                Username {!editedCamera.username && <span className="text-xs text-gray-500 dark:text-gray-400">(please fill this field)</span>}
               </label>
               <input
                 type="text"
@@ -462,7 +467,7 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
             
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Password
+                Password {!editedCamera.password && <span className="text-xs text-gray-500 dark:text-gray-400">(please fill this field)</span>}
               </label>
               <input
                 type="password"
