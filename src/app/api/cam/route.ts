@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { add } from "@/app/api/onvif";
+import { add } from '@/app/api/onvif';
+
+function mediaUriString(result: { uri?: string; mediaUri?: { uri?: string } } | undefined): string {
+  if (!result) return '';
+  return result.uri ?? result.mediaUri?.uri ?? '';
+}
 
 interface CameraRequest {
   id: string;
@@ -25,20 +30,25 @@ export async function POST(request: NextRequest) {
       const onvif = await add(body);
 
       const capabilities = onvif.defaultProfile;
-      let snapshot;
+      let snapshotUri = '';
+      let streamUri = '';
       try {
-        snapshot = await onvif.media.getSnapshotUri();
-      } catch(e) {
-        snapshot = {
-          uri: ''
-        };
+        snapshotUri = mediaUriString(await onvif.media.getSnapshotUri());
+      } catch {
+        // snapshot not supported
+      }
+      try {
+        streamUri = mediaUriString(await onvif.media.getStreamUri());
+      } catch {
+        // stream uri not available
       }
       return NextResponse.json({
         success: true,
         message: 'Connected successfully',
         status: 'connected',
         capabilities,
-        snapshotUri: snapshot?.uri,
+        snapshotUri,
+        streamUri,
       });
     } else if (body.action === 'refresh') {
       return NextResponse.json({

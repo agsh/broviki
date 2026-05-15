@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Discovery } from 'onvif';
+import { Discovery } from 'onvif/src/index.ts';
 
 export async function GET() {
   console.log('GET startup');

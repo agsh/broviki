@@ -219,6 +219,7 @@ export default function CameraProperties({ camera, height, onCameraUpdate }: Cam
           ...editedCamera,
           capabilities: result.capabilities,
           snapshotUri: result.snapshotUri,
+          streamUri: result.streamUri,
           status: result.status,
           message: result.message,
         };
