@@ -1,0 +1,12 @@
+{
+  "name": "@broviki/mediamtx",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MediaMTX binary + config for Broviki WebRTC (WHEP) + HLS/MSE backup",
+  "scripts": {
+    "postinstall": "node scripts/download.mjs",
+    "download": "node scripts/download.mjs",
+    "dev": "node scripts/run.mjs",
+    "start": "node scripts/run.mjs"
+  }
+}

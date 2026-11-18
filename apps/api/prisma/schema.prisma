@@ -1,0 +1,32 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Camera {
+  id             String   @id
+  name           String?
+  hostname       String
+  port           Int
+  username       String?
+  password       String?
+  path           String   @default("/onvif/device_service")
+  useSecure      Boolean  @default(false)
+  useWSSecurity  Boolean  @default(false)
+  snapshotUri    String?
+  streamUri      String?
+  /** Selected ONVIF media profile token */
+  profileToken   String?
+  /** Cached profile summaries (JSON) for UI; not an ONVIF session */
+  profilesJson   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([hostname, port])
+  @@index([hostname])
+}
