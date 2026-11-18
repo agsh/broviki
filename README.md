@@ -14,7 +14,40 @@ apps/
   mediamtx/  MediaMTX — RTSP → WebRTC/WHEP (API :9997, HLS :8888, WebRTC :8889)
 ```
 
-### Setup
+### Setup (Docker — no Node/TS required)
+
+```shell
+git clone https://github.com/agsh/broviki.git
+cd broviki
+docker compose up --build
+```
+
+Open [http://localhost:3000](http://localhost:3000). Camera list is stored in a Docker volume (`broviki-data`).
+
+Default Compose uses **host networking** so ONVIF WS-Discovery (UDP multicast `239.255.255.250:3702`) and RTSP see the LAN. This needs Linux Docker Engine.
+
+| URL | Service |
+|-----|---------|
+| [http://localhost:3000](http://localhost:3000) | Web UI |
+| [http://localhost:3001/api](http://localhost:3001/api) | Nest API |
+| [http://localhost:8889](http://localhost:8889) | MediaMTX WebRTC / WHEP |
+| [http://localhost:8888](http://localhost:8888) | MediaMTX HLS (MSE backup) |
+
+**Docker Desktop (macOS/Windows)** — host mode is limited; use bridge and add cameras by IP:
+
+```shell
+docker compose -f docker-compose.bridge.yml up --build
+```
+
+If WebRTC works on the same machine but fails from another device on the LAN, set the host’s LAN IP:
+
+```shell
+MTX_WEBRTCADDITIONALHOSTS=192.168.1.10 docker compose up --build
+```
+
+Stop: `docker compose down` (add `-v` to also wipe the SQLite volume).
+
+### Setup (local Node)
 
 ```shell
 git clone https://github.com/agsh/broviki.git

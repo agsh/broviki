@@ -18,9 +18,13 @@ rtspAddress: :8554
 # WebRTC / WHEP playback (active UI path)
 webrtc: yes
 webrtcAddress: :8889
+webrtcLocalUDPAddress: :8189
 webrtcAllowOrigins: ['*']
 # Plain HTTP local/LAN; set webrtcEncryption + certs for HTTPS deployments
 webrtcEncryption: no
+# Docker / remote LAN: set MTX_WEBRTCADDITIONALHOSTS to the host LAN IP if ICE fails
+# webrtcAdditionalHosts: []
+
 
 # HLS / MSE kept as fallback / backup player
 hls: yes

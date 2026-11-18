@@ -1,0 +1,59 @@
+# Broviki — run without a local Node toolchain:
+#   docker compose up --build
+# UI: http://localhost:3000
+#
+# Uses host networking so ONVIF WS-Discovery (UDP multicast) and camera
+# RTSP reach the LAN. Requires Linux Docker Engine (native host mode).
+#
+# Docker Desktop (macOS/Windows) or restricted hosts — use bridge instead:
+#   docker compose -f docker-compose.bridge.yml up --build
+# (Discovery usually fails on bridge; add cameras by IP.)
+
+name: broviki
+
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:1.21.4
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      # Optional: host LAN IP so WebRTC ICE works from other devices
+      MTX_WEBRTCADDITIONALHOSTS: ${MTX_WEBRTCADDITIONALHOSTS:-}
+    volumes:
+      - ./apps/mediamtx/mediamtx.yml:/mediamtx.yml:ro
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      PORT: '3001'
+      WEB_ORIGIN: ${WEB_ORIGIN:-http://localhost:3000}
+      DATABASE_URL: file:/data/broviki.db
+      MEDIAMTX_API_URL: http://127.0.0.1:9997
+      MEDIAMTX_HLS_PORT: '8888'
+      MEDIAMTX_WEBRTC_PORT: '8889'
+    volumes:
+      - broviki-data:/data
+    depends_on:
+      - mediamtx
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        # Host network: Next rewrites talk to Nest on the host loopback
+        API_ORIGIN: http://127.0.0.1:3001
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      PORT: '3000'
+      HOSTNAME: 0.0.0.0
+    depends_on:
+      - api
+
+volumes:
+  broviki-data:

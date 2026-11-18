@@ -14,7 +14,10 @@
     "start": "concurrently -n mtx,api,web -c magenta,blue,green \"npm run start -w @broviki/mediamtx\" \"npm run start:prod -w @broviki/api\" \"npm run start -w @broviki/web\"",
     "lint": "npm run lint -w @broviki/api --if-present && npm run lint -w @broviki/web --if-present",
     "db:migrate": "npm run prisma:migrate -w @broviki/api",
-    "db:studio": "npm run prisma:studio -w @broviki/api"
+    "db:studio": "npm run prisma:studio -w @broviki/api",
+    "docker:up": "docker compose up --build",
+    "docker:up:bridge": "docker compose -f docker-compose.bridge.yml up --build",
+    "docker:down": "docker compose down"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
