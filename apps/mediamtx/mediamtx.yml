@@ -1,0 +1,46 @@
+###############################################
+# Broviki MediaMTX — RTSP remux → WebRTC (WHEP)
+# On-demand: camera RTSP is pulled only while a viewer is connected.
+# MSE/HLS backup kept enabled on :8888 (see playback-backups/mse).
+###############################################
+
+logLevel: info
+logDestinations: [stdout]
+
+# Control API (Nest registers camera paths here)
+api: yes
+apiAddress: :9997
+
+# Optional RTSP publish/read on MediaMTX itself
+rtsp: yes
+rtspAddress: :8554
+
+# WebRTC / WHEP playback (active UI path)
+webrtc: yes
+webrtcAddress: :8889
+webrtcAllowOrigins: ['*']
+# Plain HTTP local/LAN; set webrtcEncryption + certs for HTTPS deployments
+webrtcEncryption: no
+
+# HLS / MSE kept as fallback / backup player
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigins: ['*']
+hlsAlwaysRemux: no
+hlsVariant: fmp4
+hlsSegmentCount: 7
+hlsSegmentDuration: 1s
+hlsMuxerCloseAfter: 30s
+hlsCDNSecret: broviki-dev-hls-cdn
+
+rtmp: no
+srt: no
+moq: no
+
+pathDefaults:
+  sourceOnDemand: yes
+  sourceOnDemandStartTimeout: 20s
+  sourceOnDemandCloseAfter: 30s
+
+# Per-camera paths are registered at runtime by Nest (Control API).
+paths: {}

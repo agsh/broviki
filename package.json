@@ -2,30 +2,26 @@
   "name": "broviki",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "lucide-react": "^0.522.0",
-    "next": "^16.2.6",
-    "onvif": "https://github.com/agsh/onvif.git#v1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "dev": "concurrently -n mtx,api,web -c magenta,blue,green \"npm run dev -w @broviki/mediamtx\" \"npm run dev -w @broviki/api\" \"npm run dev -w @broviki/web\"",
+    "dev:api": "npm run dev -w @broviki/api",
+    "dev:web": "npm run dev -w @broviki/web",
+    "dev:mediamtx": "npm run dev -w @broviki/mediamtx",
+    "build": "npm run build -w @broviki/api && npm run build -w @broviki/web",
+    "start": "concurrently -n mtx,api,web -c magenta,blue,green \"npm run start -w @broviki/mediamtx\" \"npm run start:prod -w @broviki/api\" \"npm run start -w @broviki/web\"",
+    "lint": "npm run lint -w @broviki/api --if-present && npm run lint -w @broviki/web --if-present",
+    "db:migrate": "npm run prisma:migrate -w @broviki/api",
+    "db:studio": "npm run prisma:studio -w @broviki/api"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@typescript-eslint/eslint-plugin": "^8.34.1",
-    "@typescript-eslint/parser": "^8.34.1",
-    "eslint": "^9.29.0",
-    "eslint-config-next": "15.3.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "concurrently": "^9.2.1"
+  },
+  "allowScripts": {
+    "prisma@7.10.1": true,
+    "@prisma/engines@7.10.1": true,
+    "better-sqlite3@12.11.1": true
   }
 }

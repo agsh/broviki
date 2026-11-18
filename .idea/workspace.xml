@@ -4,28 +4,111 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="chore: README">
+    <list default="true" id="c87af39f-7115-4a27-b5b8-d55fdd519925" name="Changes" comment="feat: slice of work. uses node.js 26, onvif 1.1.0">
+      <change afterPath="$PROJECT_DIR$/apps/api/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/eslint.config.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/nest-cli.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/prisma.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/prisma/migrations/20261117081105_init_cameras/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/prisma/migrations/20261117095208_add_camera_profile/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/prisma/migrations/migration_lock.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/prisma/schema.prisma" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/cam.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/cameras.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/cameras.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/cameras.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/device-info.util.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/dto/cam.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/cameras/profile.util.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/discovery/discovery.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/discovery/discovery.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/discovery/discovery.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/mediamtx/mediamtx.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/mediamtx/mediamtx.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/onvif/camera-config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/onvif/camera-event.util.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/onvif/onvif-error.util.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/onvif/onvif.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/onvif/onvif.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/prisma/prisma.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/prisma/prisma.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/test/app.e2e-spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/test/jest-e2e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/tsconfig.build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mediamtx/auto.crt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mediamtx/auto.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mediamtx/mediamtx.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mediamtx/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mediamtx/scripts/download.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mediamtx/scripts/run.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/next.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/app/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/components/mse-player.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/components/playback-backups/mse/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/components/playback-backups/mse/mse-player.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/components/video-window.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/web/src/components/webrtc-player.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identifier.sqlite" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/eslint.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/cam/control/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cam/control/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/cam/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/cam/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/onvif.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/onvif.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/startup/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/startup/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/camera-properties.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/camera-properties.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/video-window.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/video-window.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/postcss.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/public/file.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/globe.svg" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/public/globe.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/next.svg" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/public/next.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vercel.svg" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/public/vercel.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/window.svg" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/public/window.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/cam/control/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/cam/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/cameras/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/onvif.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/startup/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/camera-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/components/camera-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/camera-properties.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/components/camera-properties.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/resizer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/components/resizer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/right-panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/src/components/right-panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/video-window.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/web/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseLocalColorSettings">
+    <colors>
+      <entry key="18e6d3b2-a5d5-4dee-b2b7-ef43fe2cc036" value="" />
+    </colors>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
       </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
     </option>
   </component>
   <component name="Git.Settings">
@@ -43,6 +126,69 @@
     &quot;accountId&quot;: &quot;60ee8530-7320-415c-a263-82eaa61d0db8&quot;
   }
 }</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0000000015964592" />
+      <entry key="M2" value="1.0000891287256213" />
+      <entry key="M5" value="1.1152185396448888" />
+      <entry key="M10" value="3.066380000017423" />
+      <entry key="M15" value="8.010707288932101" />
+      <entry key="M30" value="41.12417494454427" />
+      <entry key="H1" value="155.74407825699862" />
+      <entry key="H2" value="408.2446823794583" />
+      <entry key="H4" value="844.8487005437696" />
+      <entry key="D1" value="2166.3190621334265" />
+      <entry key="W1" value="2656.625998075371" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="1.5935075026311135E-161" />
+      <entry key="S60" value="8.138139818448519E-81" />
+      <entry key="M2" value="2.332695838986903E-40" />
+      <entry key="M5" value="5.556254698477166E-16" />
+      <entry key="M10" value="7.991331407106879E-8" />
+      <entry key="M15" value="4.2431111638575094E-5" />
+      <entry key="M30" value="0.02290847713217173" />
+      <entry key="H1" value="0.5401851124847896" />
+      <entry key="H2" value="2.6557585620737396" />
+      <entry key="H4" value="6.065347983585852" />
+      <entry key="D1" value="13.30829762346126" />
+      <entry key="W1" value="15.571577265496305" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="6.045856042212157E-112" />
+      <entry key="MS500" value="5.705471763749899E-23" />
+      <entry key="S2" value="2.7483553864248653E-6" />
+      <entry key="S5" value="0.005965256958877352" />
+      <entry key="S10" value="0.07723507596213881" />
+      <entry key="S30" value="0.4258645854544756" />
+      <entry key="S60" value="0.6525830119891468" />
+      <entry key="M2" value="0.8079151956108046" />
+      <entry key="M5" value="1.0333488244844198" />
+      <entry key="M10" value="3.0240218650027524" />
+      <entry key="M15" value="7.981550218909342" />
+      <entry key="M30" value="41.13111042628545" />
+      <entry key="H1" value="156.27489120103309" />
+      <entry key="H2" value="410.89420608884797" />
+      <entry key="H4" value="850.9097973116372" />
+      <entry key="D1" value="2179.626242556141" />
+      <entry key="W1" value="2672.197397221387" />
+    </decayedShown>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -56,14 +202,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "master",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",
-    "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "/run/media/agsh/base.home/agsh/git/onvif-test-promises",
+    "last_opened_file_path": "/home/agsh/Pictures/standard.svg",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -71,11 +218,19 @@
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.db:studio.executor": "Run",
     "npm.dev.executor": "Run",
     "npm.lint.executor": "Run",
     "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
     "ts.external.directory.path": "/home/agsh/git/broviki/node_modules/typescript/lib",
+    "two.files.diff.last.used.file": "/home/agsh/Pictures/standard.svg",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -85,6 +240,26 @@
   </component>
   <component name="RunManager" selected="npm.dev">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="db:studio" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="db:studio" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -109,7 +284,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.db:studio" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.lint" />
       </list>
     </recent_temporary>
@@ -117,7 +294,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.32098.39" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.9437.145" />
       </set>
     </attachedChunks>
   </component>
@@ -141,7 +318,12 @@
       <workItem from="1754038293568" duration="1808000" />
       <workItem from="1754121434661" duration="604000" />
       <workItem from="1755160710518" duration="135000" />
-      <workItem from="1778860274477" duration="3278000" />
+      <workItem from="1778860274477" duration="3694000" />
+      <workItem from="1779095055751" duration="24000" />
+      <workItem from="1779447235375" duration="15000" />
+      <workItem from="1794585739347" duration="3772000" />
+      <workItem from="1794900058347" duration="24579000" />
+      <workItem from="1794950595481" duration="10847000" />
     </task>
     <task id="LOCAL-00001" summary="feat: next.js version">
       <option name="closed" value="true" />
@@ -239,7 +421,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750806308755</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix: slice of work, node.js 25 fixes">
+      <option name="closed" value="true" />
+      <created>1778864393320</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778864393320</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +447,9 @@
     <MESSAGE value="chore: opens the `Security` tab if no username or password is set" />
     <MESSAGE value="feat: working PTZ controls" />
     <MESSAGE value="chore: README" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: README" />
+    <MESSAGE value="fix: slice of work, node.js 25 fixes" />
+    <MESSAGE value="feat: slice of work. uses node.js 26, onvif 1.1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: slice of work. uses node.js 26, onvif 1.1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -278,19 +470,9 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/app/api/onvif.ts</url>
-          <line>28</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/../onvif/src/onvif.ts</url>
           <line>666</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/app/api/cam/control/route.ts</url>
-          <line>61</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
